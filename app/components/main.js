@@ -16,9 +16,10 @@ class Main extends Component {
   
   render() {
     return <div id="topNode">
-      <Header navigation={this.props.state.navigationReducer}></Header>
+      <Header navigation={this.props.state.navigationReducer} location={this.props.location}></Header>
       {React.cloneElement(this.props.children, this.props)}
-      <Footer navigation={this.props.state.navigationReducer}></Footer>
+      {this.props.location.pathname !== '/' ?
+        <Footer navigation={this.props.state.navigationReducer} location={this.props.location}></Footer> : null}
     </div>;
   }
   
@@ -30,6 +31,7 @@ Main.propTypes = {
   state: PropTypes.object,
   onNavClick: PropTypes.func,
   navigationReducer: PropTypes.object,
+  location: PropTypes.object,
 };
 
 

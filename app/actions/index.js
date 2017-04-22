@@ -85,7 +85,7 @@ export function getRemoteData(url) {
         const nav = createNavigation(items);
         dispatch(initNavigation(nav));
         dispatch(initPortfolio(portfolio));
-        return dispatch(remoteLoadSuccess());
+        return dispatch(remoteLoadSuccess(items));
       })
       .catch(() => {
         dispatch(remoteLoadError());

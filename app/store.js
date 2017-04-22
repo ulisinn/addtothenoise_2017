@@ -13,7 +13,7 @@ import thunk from 'redux-thunk';
 
 const base_url = 'http://addtothenoise.com/';
 const remote_url = base_url + 'cms_pages/get_site_data.php';
-const mock_url = 'mock/data.json';
+const mock_url = 'mock/mock.json';
 const dev = true;
 const url = (dev) ? mock_url : remote_url;
 

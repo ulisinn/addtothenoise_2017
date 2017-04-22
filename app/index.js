@@ -8,23 +8,26 @@ import routes from './routes';
 
 import {Provider} from 'react-redux';
 import store, {history} from './store';
-import DevTools from './containers/DevTools';
 import {REMOTE_LOAD_SUCCESS} from './actions';
+// UTIL
+import {actual} from 'actual';
+import MobileDetect from 'mobile-detect';
+
 // CREATE ROOT ELEMENT
 
 const rootElement = document.createElement('div');
+const md = new MobileDetect(window.navigator.userAgent);
 rootElement.id = 'root';
 document.body.appendChild(rootElement);
 
-// REACT ROUTER
-
-// REDUX
 
 window.addEventListener('resize', onResize);
 onResize();
 
 function onResize() {
-  console.log('resize');
+  let device = ['width', 'height', 'device-width', 'device-height'].map(actual.as('px'));
+  let hasTouch = (md.mobile() !== null) ? true : false;
+  // console.log('resize', device, 'hasTouch', hasTouch);
 }
 
 const listenToStateUnsubscribe = store.subscribe(_initialLoad);
@@ -38,9 +41,9 @@ function _initialLoad() {
       <Provider store={store}>
         <div>
           <Router history={history} routes={routes}/>
-                    {
+          {/*                    {
            <DevTools />
-           }
+           }*/}
         </div>
       </Provider>,
       rootElement

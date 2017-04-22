@@ -17,7 +17,7 @@ $VegurBold: 'vegurbold', Helvetica, Arial, sans-serif;
 
 body {
   background-color: white;
-  color: black;
+  color: $header_background;
   font-family: $VegurRegular;
   font-size: 100%;
 }
@@ -38,62 +38,107 @@ body {
   text-align: center;
 }
 
+// HEADER
+
 #header {
   background-color: $header_background;
   position: fixed;
   top: 0px;
   z-index: 100;
   width: 100%;
-  height: 40px;
+  height: 30px;
+
+  @include mq('tablet') {
+    height: 40px;
+    width: 100%;
+  }
 
   h1 {
     color: white;
     position: relative;
-    margin-top: 15px;
+    margin-top: 6px;
+    margin-bottom: 9px;
     margin-left: 0.8em;
     letter-spacing: 1px;
     font-size: 1.3em;
+    user-select: none;
+    cursor: default;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     @include mq('tablet') {
       font-size: 1.6em;
       margin-top: 21px;
+      margin-bottom: 0;
 
     }
   }
 
-  #portfolioNav li {
-    position: relative;
-    display: inline-block;
-    text-transform: uppercase;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding-top: 6px;
-    font-size: 0.9em;
-    overflow: hidden;
-    cursor: pointer;
-  }
+  #portfolioNav {
+    color: $header_background;
+    margin-left: 10px;
+    margin-top: -7px;
+    font-size: 0.8em;
 
-  #portfolioNav li.deselected {
-    font-family: $VegurRegular;
-    padding-bottom: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-  #portfolioNav li.selected {
-    border-left: 1px #bfbeb2 solid;
-    border-right: 1px #bfbeb2 solid;
-    border-bottom: 1px #bfbeb2 solid;
-    font-family: $VegurBold;
-    padding-bottom: 3px;
-    padding-left: 13px;
-    padding-right: 13px;
-  }
-  /*
+    ul, li {
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      /*      margin-left: 5px;
+            margin-right: 5px;*/
+      padding-top: 6px;
+      padding-bottom: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
+      overflow: hidden;
+      letter-spacing: default;
+    }
+    li.deselected {
+      font-family: $VegurRegular;
+      border-left: 1px rgba(255, 255, 255, 0) solid;
+      border-right: 1px rgba(255, 255, 255, 0) solid;
+      border-bottom: 1px rgba(255, 255, 255, 0) solid;
+    }
+
+    li.selected {
+      border-left: 1px #bfbeb2 solid;
+      border-right: 1px #bfbeb2 solid;
+      border-bottom: 1px #bfbeb2 solid;
+      font-family: $VegurBold;
+      /*      padding-bottom: 4px;
+            padding-left: 11px;
+            padding-right: 11px;*/
+      user-select: none;
+      cursor: default;
+    }
+
     @include mq('tablet') {
-      height: 40px;
-    }*/
+      margin-left: 200px;
+      margin-top: -7px;
+      font-size: 0.9em;
+
+      li {
+        padding-left: 11px;
+        padding-right: 11px;
+        letter-spacing: 0.07em;
+      }
+    }
+  }
 }
+
+// FOOTER
 
 #footer {
   position: fixed;
@@ -108,4 +153,11 @@ body {
   border-top: 2px #bfbeb2 solid;
   padding-top: 5px;
   font-size: 0.8em;
+
+  a{
+    font-family: 'vegurbold';
+    color: #d67029;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
 }

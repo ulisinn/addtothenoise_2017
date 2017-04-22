@@ -17,9 +17,13 @@ import PortfolioDetailMusic from './components/portfolio_detail_music';
 export default (
   <Route path="/" component={Main}>
     <IndexRoute component={SplashScreen}/>
-    <Route path="about" component={About}/>
-    <Route path="oped" component={Oped}/>
-    <Route path="portfolio" component={PortfolioMaster}/>
+    <Route path="/about" component={About}/>
+    <Route path="/oped" component={Oped}/>
+    <Route path="/portfolio" component={PortfolioMaster}/>
+    <Route path="/print" component={PortfolioMaster}/>
+    <Route path="/web" component={PortfolioMaster}/>
+    <Route path="/other" component={PortfolioMaster}/>
+    <Route path="/music" component={PortfolioMaster}/>
     <Route path="/portfolio/:postId" component={PortfolioDetailAll}/>
     <Route path="/music/:postId" component={PortfolioDetailMusic}/>
     <Route path="*" component={SplashScreen}/>
