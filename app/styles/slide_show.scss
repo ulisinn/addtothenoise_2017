@@ -1,0 +1,104 @@
+.slide_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.slide_1 {
+  width: 100%;
+  border: 1px solid green;
+}
+
+.slide_image_1 {
+  //flex-basis: 45%;
+  width: 45%;
+  height: auto;
+}
+
+.slide_copy_1 {
+  flex-basis: 55%;
+}
+
+.slide_text_1 {
+  font-family: $PantonLightCaps;
+  font-size: 1.4em;
+  //letter-spacing: -0.04em;
+}
+
+.slide_text_2 {
+  font-size: 1.2em;
+  font-family: _serif;
+  //letter-spacing: 0.04em;
+
+}
+
+.slide_text_4a {
+  font-family: $PantonLightCaps;
+  fill: $body_orange;
+  font-size: 2em;
+  //letter-spacing: 0.03em;
+}
+
+.slide_text_4b {
+  font-family: $PantonBlackCaps;
+  fill: $body_orange;
+  font-size: 2em;
+  //letter-spacing: 0.03em;
+}
+
+.slide_text_5a {
+  font-family: $PantonLightCaps;
+  fill: $header_background;
+  font-size: 2em;
+  //letter-spacing: 0.03em;
+}
+
+.slide_text_5b {
+  font-family: $PantonBlackCaps;
+  fill: $header_background;
+  font-size: 1.4em;
+  //letter-spacing: 0.03em;
+}
+
+.carousel{
+  //overflow:hidden;
+  width:100%;
+}
+
+#carouselWrapper{
+  list-style:none;
+  position:relative;
+  width:500%; /* Number of panes * 100% */
+  overflow:hidden; /* This is used solely to clear floats, it does not add functionality. */
+}
+
+.panes{
+  animation:carousel 6s 1 forwards;
+}
+
+#carouselWrapper > li{
+  position:relative;
+  float:left;
+  width:20%; /* 100 / number of panes */
+}
+
+@keyframes carousel{
+  0%    { left:0; }
+  85%   { left:0; }
+  100% { left:-100%; }
+
+}
+
+.slide_text_mobile_4a{
+  font-family: $PantonLightCaps;
+  fill: $body_orange;
+  font-size: 3.25em;
+  letter-spacing: -0.01em;
+}
+
+.slide_text_mobile_4b{
+  font-family: $PantonBlackCaps;
+  fill: $body_orange;
+  font-size: 3.25em;
+}

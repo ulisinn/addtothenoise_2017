@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="keywords" content="Los Angeles, LA, L.A.">
+    <meta name="keywords" content="addtothenoise,add to the noise,design,web,creative,interactive,artdirection,art direction,printdesign,print design,webdesign,web design,flash,sounddesign,sound design,imaging, new media,interactive design,QT,QuickTime">
+    <meta name="description" content="add to the noise - a Los Angeles design boutique. Services: Art Direction, Print Design, Web Design, Interactive Development">
+    <meta name="copyright" content="Copyright 2017 addtothenoise">
+    <meta name="keywords" content="anabel, anabel sinn, anabel pareja-sinn, Anabel, Anabel Sinn, Anabel Pareja-Sinn, ulrich, sinn, ulrich sinn,Ulrich, Sinn, Ulrich Sinn">
+    <% if (htmlWebpackPlugin.options.mobile) { %>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.appMountId) { %>
+    <div id="<%= htmlWebpackPlugin.options.appMountId %>"></div>
+    <% } %>
+
+    <% if (htmlWebpackPlugin.options.googleAnalytics) { %>
+    <script type="text/javascript">
+      window.GoogleAnalyticsObject='ga';window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+
+      <% if (htmlWebpackPlugin.options.googleAnalytics.trackingId) { %>
+      ga('create','<%= htmlWebpackPlugin.options.googleAnalytics.trackingId %>','auto');
+      <% } else { throw new Error("html-webpack-template requires googleAnalytics.trackingId config"); } %>
+
+      <% if (htmlWebpackPlugin.options.googleAnalytics.pageViewOnLoad) { %>
+      ga('send','pageview')
+      <% } %>
+    </script>
+    <script async defer src="https://www.google-analytics.com/analytics.js" type="text/javascript"></script>
+    <% } %>
+
+</head>
+<body>
+</body>
+</html>

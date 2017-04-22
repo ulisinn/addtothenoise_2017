@@ -1,0 +1,466 @@
+@import 'reset';
+@import 'colors';
+@import 'fonts';
+
+@include fontFace('Gotham-Bold', '../fonts/Gotham-Bold');
+@include fontFace('MinionPro-Regular', '../fonts/MinionPro-Regular');
+@include fontFace('Panton-BlackCaps', '../fonts/Panton-BlackCaps');
+@include fontFace('Panton-LightCaps', '../fonts/Panton-LightCaps');
+@include fontFace('New-Baskerville', '../fonts/new-baskerville');
+
+$HelveticaNeue: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$bodyGrey: rgba(0, 0, 0, 0.6);
+
+#contentWrapper {
+  position: relative;
+  margin-top: 1.5em;
+  //z-index: -10;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 1.5em;
+  padding-top: 1.9em;
+  //border: 1px solid red;
+}
+
+.contentHome {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.contentFull {
+  position: relative;
+  max-width: 940px;
+  margin: 0 auto;
+  padding-top: 1.9em;
+}
+
+.contentHeader {
+  color: $body_orange;
+  font-size: 1.3em;
+  line-height: 1.2em;
+}
+
+.contentBody {
+  font-family: $HelveticaNeue;
+  color: $bodyGrey;
+  font-size: 0.87em;
+  line-height: 1.2em;
+  margin-top: 0.6em;
+  margin-bottom: 2em;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.footnote {
+  font-size: 0.75em;
+
+}
+
+.contentBodyEm {
+  font-weight: bold;
+}
+
+.contentBodyIt {
+  font-style: italic;
+}
+
+.noTransform {
+  text-transform: none !important;
+}
+
+.contentFooter {
+  font-family: $HelveticaNeue;
+  color: $bodyGrey;
+  font-size: 0.7em;
+  line-height: 1.2em;
+  margin-top: 0.6em;
+  margin-bottom: 2em;
+  font-style: italic;
+  text-transform: none;
+}
+
+#schedule {
+  text-transform: uppercase;
+
+}
+
+.scheduleDay {
+  font-size: 0.9em;
+  margin-bottom: 1.5em;
+  header {
+    font-family: $PantonBlackCaps;
+    color: $body_orange;
+    line-height: 1.3em;
+  }
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+}
+
+.scheduleEvent, .localPanelists {
+  display: flex;
+  flex-flow: row;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1em;
+}
+
+.scheduleTime {
+  width: 130px;
+}
+
+.scheduleParticipant {
+  display: inline;
+  min-width: 170px;
+}
+
+.panelistName {
+  text-transform: uppercase;
+  min-width: 240px;
+  line-height: 1.2em;
+
+  p {
+    padding-left: 0.6em;
+  }
+}
+
+.panelistOrg {
+  padding-left: 0.6em;
+  line-height: 1.2em;
+
+}
+
+.scheduleTitle {
+  margin-right: 0.5em;
+  line-height: 1.1em;
+}
+
+@media all and (max-width: 920px) {
+  .scheduleEvent {
+    flex-direction: column;
+    margin-bottom: 0.2em;
+  }
+
+  .scheduleDay {
+    margin-bottom: 2em;
+
+    div {
+      padding-top: 3px;
+    }
+  }
+}
+
+@media all and (max-width: 640px) {
+  .localPanelists {
+    flex-direction: column;
+    margin-bottom: 0.2em;
+  }
+
+  .scheduleDay {
+    margin-bottom: 2em;
+
+    div {
+      padding-top: 3px;
+    }
+  }
+}
+
+// PATRONS
+
+#patrons {
+  margin-top: -30px;
+  overflow: hidden;
+}
+
+#patronsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+  //border: 1px solid red;
+}
+
+#patronsHeader {
+  position: relative;
+  background: url("../images/patrons_img.png") 0 0 no-repeat;
+  width: 50%;
+  height: 400px;
+  background-size: cover;
+
+}
+
+#patronsTitle {
+  position: absolute;
+  margin-left: 0.5em;
+  right: 20px;
+  top: 62px;
+  font-family: Panton-LightCaps, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 1.8em;
+}
+
+#patronsLogos {
+  padding: 10px;
+  width: 50%;
+  height: 345px;
+  margin-top: 18px;
+  border: 1px solid lightgray;
+  border-left: none;
+}
+
+.sshrc_logo {
+  width: 100%;
+  max-width: 400px;
+  height: 20px;
+}
+
+.logo {
+  width: 135px;
+  height: 80px;
+  //border: 1px solid green;
+  //float: left;
+  display: inline-flex;
+  margin: 2px;
+  //margin-right: 7px;
+  margin-left: 11px;
+}
+
+#wiaih {
+  background: url("../images/WIAIH_LOGO.jpg") 0 50% no-repeat;
+  background-size: 100%;
+  margin-left: -0.1em;
+  margin-top: 1em;
+}
+
+#mc_gill {
+  background: url("../images/mc_gill_logo.png") 0 50% no-repeat;
+  background-size: 90%;
+}
+
+#museum_fine_arts {
+  background: url("../images/MBAM_logo_bil_horiz_col-300x162.png") 0 50% no-repeat;
+  background-size: 90%;
+}
+
+#cirmmt {
+  background: url("../images/cirmmt_vectorial_1.png") 0 50% no-repeat;
+  background-size: 70%;
+
+}
+
+#empatica {
+  background: url("../images/empatica.png") 10% 50% no-repeat;
+  background-size: 100%;
+}
+
+#iplai {
+  background: url("../images/iplai.png") 10% 50% no-repeat;
+  background-size: 60%;
+}
+
+#schulich {
+  background: url("../images/moriarty_logo.png") 10% 50% no-repeat;
+  background-size: 100%;
+}
+
+#le_salon {
+  width: 140px;
+  height: 80px;
+  background: grey url("../images/LeSalong-LogoWhite.png") 50% 50% no-repeat;
+  background-size: 70%;
+}
+
+#giant_steps {
+  background: url("../images/giant_steps.png") 10% 50% no-repeat;
+  background-size: 60%;
+}
+
+#productionsspectrum {
+  background: url("../images/spectrum_new.png") 50% 50% no-repeat;
+  background-size: 100%;
+}
+
+#montrealsciencecentre {
+  background: url("../images/Montreal_centre_science.png") 2% 50% no-repeat;
+  background-size: 53%;
+}
+
+#grandsballets {
+  background: url("../images/GB-NCT_logo_vertical_k.png") 50% 50% no-repeat;
+  background-size: 77%;
+}
+
+#sshrc {
+  background: url("../images/SSHRC_Fip_colour.jpg") 0 0 no-repeat;
+  background-size: 100%;
+  margin-left: 0.4em;
+}
+
+@media all and (max-width: 920px) {
+  #patronsWrapper {
+    flex-direction: column;
+    margin-bottom: 0.2em;
+  }
+  #patronsHeader {
+    width: 100%;
+    height: 100px;
+    background-size: cover;
+  }
+  #patronsLogos {
+    padding: 15px;
+    width: 100%;
+    height: auto;
+    border: none;
+  }
+  .contentFooter {
+    padding-left: 2em;
+    padding-top: 2em;
+  }
+
+}
+
+// CONTACT
+
+#contact {
+  margin-top: -30px;
+  overflow: hidden;
+}
+
+#contactWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  //border: 1px solid red;
+}
+
+#contactHeader {
+  position: relative;
+  background: url("../images/patrons_img.png") 0 0 no-repeat;
+  background-size: cover;
+  width: 50%;
+  height: 300px;
+  margin-bottom: 3em;
+}
+
+#contactTitle {
+  position: absolute;
+  margin-left: 0.5em;
+  right: 20px;
+  top: 44px;
+  font-family: Panton-LightCaps, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 2em;
+  transform: rotate(-90deg);
+  transform-origin: 100% 100%;
+}
+
+#contactAddresses {
+  padding: 10px;
+  margin-top: 60px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.contactAddress {
+  color: $body_orange;
+  line-height: 1.3em;
+  display: block;
+  margin-bottom: 0.7em;
+  padding: 10px;
+
+}
+
+.contactEmail {
+  font-family: $HelveticaNeue;
+  color: $bodyGrey;
+  font-size: 0.87em;
+  line-height: 1.2em;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+
+  }
+}
+
+@media all and (max-width: 640px) {
+  #contactWrapper {
+    flex-direction: column;
+    margin-bottom: 0.2em;
+  }
+  #contactHeader {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 0;
+  }
+  #contactTitle {
+    transform: rotate(0);
+    transform-origin: 0 0;
+  }
+  #contactAddresses {
+    margin-top: 0;
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+}
+
+// VIDEOS
+
+#videos {
+  margin-top: -30px;
+  overflow: hidden;
+}
+
+#videoWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  //border: 1px solid red;
+}
+
+#videoHeader {
+  position: relative;
+  background: url("../images/slide_bg_1.png") 0 -30px no-repeat;
+  background-size: cover;
+  width: 50%;
+  height: 110px;
+  margin-bottom: 3em;
+}
+
+#videoTitle {
+  position: absolute;
+  margin-left: 0.5em;
+  right: 20px;
+  top: 20px;
+  font-family: Panton-LightCaps, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 1.8em;
+}
+
+@media all and (max-width: 640px) {
+  #videoHeader {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 1em;
+  }
+
+  #videoContent {
+    width: 88%;
+    margin: 0 auto;
+  }
+}
