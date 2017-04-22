@@ -4,11 +4,22 @@
 
 # IntelliJ project files
 .idea
+.htaccess
 *.iml
 out
 gen
 cms
 perch
-perchtest
-php_scripts
-templates
+
+/pages/about.php
+/pages/footer.php
+/pages/header.php
+/pages/oped.php
+/pages/portfolio_music.php
+/pages/portfolio_other.php
+/pages/portfolio_print.php
+/pages/portfolio_web.php
+/pages/get_site_data.php
+
+node_modules/
+records.json
