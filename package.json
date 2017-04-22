@@ -93,6 +93,7 @@
     "webpack-merge": "^3.0.0"
   },
   "dependencies": {
+    "actual": "^0.4.0",
     "font-awesome": "^4.7.0",
     "mobile-detect": "^1.3.5",
     "purecss": "^0.6.2",
