@@ -5,13 +5,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Oped = () =>
-  (<div id="splash" className="contentPanel">
+
+const Oped = ( { onPageClick, pageContent, baseUrl }) =>
+  (<div id="oped" className="contentPanel">
     <div className="flexInner">
-      <div>Oped</div>
+      <p >{pageContent[0].bodyStripped}</p>
+      <p><em>{pageContent[0].author}</em></p>
     </div>
   </div>);
 
 
+Oped.propTypes = {
+  pageContent: PropTypes.array,
+  baseUrl: PropTypes.string,
+  onPageClick: PropTypes.func,
+};
 
 export default Oped;

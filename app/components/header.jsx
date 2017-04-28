@@ -14,8 +14,6 @@ export default class Header extends Component {
   render() {
     return (
       <div id="header">
-        
-        
         {this.props.location.pathname !== '/' ? <h1><Link to='/'>{this.props.navigation.name}</Link></h1> :
           <h1>{this.props.navigation.name}</h1>}
         {this.props.location.pathname !== '/' ? this.showNavigation() : null}

@@ -34,8 +34,6 @@ export default function loadRemoteContent(state = {}, action) {
       console.log('PREPARE_DATA action', action, state);
       return {
         ...state,
-/*        portfolioItems: createAllList(state),
-        navigation: createNavigation(state),*/
         remoteData: REMOTE_DATA_READY,
       };
 
@@ -43,22 +41,3 @@ export default function loadRemoteContent(state = {}, action) {
       return state;
   }
 }
-/*
-
-function createNavigation(state) {
-  const nav = {};
-  for (let prop in state.header[0]) {
-    if (!prop.startsWith('_')) {
-      nav[prop] = state.header[0][prop];
-    }
-  }
-  return nav;
-}
-
-function createAllList(state) {
-    const arr = state.print.concat(state.web, state.other, state.music);
-  console.log('createAllList', arr);
-  return arr;
-}
-*/
-

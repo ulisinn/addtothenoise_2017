@@ -3,21 +3,28 @@
  */
 
 import React from 'react';
-import {Link} from 'react-router';
-
 import PropTypes from 'prop-types';
 
-const SplashScreen = () =>
-  (<div id="splash" className="contentPanel">
-    <div className="flexInner">
-      <div><Link to='/portfolio'>ENTER</Link></div>
-      <div>SplashScreenImage</div>
+import SplashImage from './SplashImage';
+import EnterButton from './EnterButton';
+
+const SplashScreen = ({ onPageClick, pageContent, baseUrl }) =>
+  (
+    <div id="splash" className="contentPanel">
+      <div className="flexInner">
+        <EnterButton label='ENTER'/>
+        <SplashImage url={baseUrl + pageContent[1].landingPageImage}></SplashImage>
+      </div>
     </div>
-  </div>);
+  );
 
 SplashScreen.propTypes = {
   text: PropTypes.string,
   margin: PropTypes.number,
+  props: PropTypes.obj,
+  pageContent: PropTypes.array,
+  baseUrl: PropTypes.string,
+  onPageClick: PropTypes.func,
 };
 
 export default SplashScreen;

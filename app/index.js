@@ -8,7 +8,7 @@ import routes from './routes';
 
 import {Provider} from 'react-redux';
 import store, {history} from './store';
-import {REMOTE_LOAD_SUCCESS} from './actions';
+import {REMOTE_LOAD_SUCCESS, setBrowserMetadata} from './actions';
 // UTIL
 import {actual} from 'actual';
 import MobileDetect from 'mobile-detect';
@@ -22,12 +22,22 @@ document.body.appendChild(rootElement);
 
 
 window.addEventListener('resize', onResize);
-onResize();
+
 
 function onResize() {
-  let device = ['width', 'height', 'device-width', 'device-height'].map(actual.as('px'));
   let hasTouch = (md.mobile() !== null) ? true : false;
+  let device = ['width', 'height', 'device-width', 'device-height'].map(actual.as('px'));
+  let width = device[0];
+  let height = device[1];
+  let deviceWidth = device[2];
+  let deviceHeight = device[3];
+  let orientation = null;
+  if (hasTouch) {
+    orientation = (deviceHeight >= deviceWidth) ? 'portrait' : 'landscape';
+  }
+  
   // console.log('resize', device, 'hasTouch', hasTouch);
+  store.dispatch(setBrowserMetadata({ hasTouch, width, height, deviceWidth, deviceHeight, orientation }));
 }
 
 const listenToStateUnsubscribe = store.subscribe(_initialLoad);
@@ -37,6 +47,7 @@ function _initialLoad() {
   
   if (state.remoteData === REMOTE_LOAD_SUCCESS) {
     listenToStateUnsubscribe();
+    onResize();
     render(
       <Provider store={store}>
         <div>

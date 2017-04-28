@@ -22,8 +22,14 @@ body {
   font-size: 100%;
 }
 
+em {
+  font-family: $VegurBold;
+}
+
 .contentPanel {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -33,12 +39,53 @@ body {
 }
 
 .flexInner {
-  border: 1px solid red;
+  border: 1px solid grey;
+  background-color: white;
   align-self: center;
   text-align: center;
+  width: 85%;
+  max-width: 1025px;
 }
 
-// HEADER
+.thumbnail, .blankThumbnail {
+  box-sizing: border-box;
+  border-bottom: 1px #c2c2d0 solid;
+  border-right: 1px #c2c2d0 solid;
+  position: relative;
+  width: 127px;
+  height: 90px;
+  overflow: hidden;
+  background-color: #e7e7df;
+  opacity: 1;
+}
+
+.blankThumbnail {
+  background-color: #F9F9F1;
+}
+
+.thumbnail:hover {
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.projectDescription {
+  position: relative;
+  height: 20px;
+  margin-top: 3px;
+  font-size: 0.8em;
+  line-height: 1.2em;
+}
+
+/* HEADER*/
 
 #header {
   background-color: $header_background;
@@ -73,7 +120,6 @@ body {
       font-size: 1.6em;
       margin-top: 21px;
       margin-bottom: 0;
-
     }
   }
 
@@ -138,7 +184,7 @@ body {
   }
 }
 
-// FOOTER
+/* FOOTER*/
 
 #footer {
   position: fixed;
@@ -148,16 +194,170 @@ body {
   /*border: 1px solid grey;*/
   margin-bottom: 5px;
   margin-top: 2px;
-  padding-left: 4em;
+  padding-left: 2.4em;
   background-color: white;
   border-top: 2px #bfbeb2 solid;
   padding-top: 5px;
   font-size: 0.8em;
 
-  a{
+  a {
     font-family: 'vegurbold';
     color: #d67029;
     text-decoration: none;
     text-transform: uppercase;
+  }
+}
+
+/* SPLASH SCREEN*/
+
+#splash {
+  background-color: $content_background;
+  .contentPanel {
+    padding: 5%;
+  }
+  img {
+    width: 100%;
+  }
+}
+
+/*
+OPED
+*/
+
+#oped {
+  line-height: 1.3em;
+  text-align: left;
+
+  p {
+    font-size: 0.8em;
+    margin-bottom: 2em;
+  }
+
+  .flexInner {
+    border: none;
+    align-self: center;
+    text-align: left;
+    padding: 1em;
+    max-width: 750px;
+  }
+}
+
+/* PORTFOLIO*/
+
+#portfolio {
+  .flexInner {
+    width: 381px;
+    border: none;
+    text-align: left;
+  }
+
+  @include mq('tablet') {
+    .flexInner {
+      width: 762px;
+    }
+  }
+
+  #flexThumbnail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-left: 1px #c2c2d0 solid;
+    border-top: 1px #c2c2d0 solid;
+    border-bottom: none;
+    border-right: none;
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    max-width: 780px;
+    box-sizing: content-box;
+  }
+}
+
+/*PORTFOLIO DETAIL*/
+
+#portfolioDetail {
+
+  .flexInner {
+    position: relative;
+    border: none;
+    background-color: white;
+    align-self: center;
+    width: auto;
+  }
+
+  .detailImageContainer {
+    text-align: left;
+  }
+  .mainImage {
+    height: 364px;
+    width: 768px;
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+  }
+
+  .moreButton {
+    position: relative;
+    width: 105px;
+    height: 59px;
+    background-image: url('../images/moreBtn.png');
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: -110px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    padding-bottom: 0.5em;
+  }
+
+  .detailSelectorButtonContainer {
+    position: absolute;
+    top:0;
+    left: 0;
+    margin-left: -33px;
+    margin-top: -33px;
+  }
+
+  .closeDetailButton {
+    background-image: url('../images/closeBtn.png');
+    position: relative;
+    width: 23px;
+    height: 23px;
+    border: 1px solid $header_background;
+    background-size: cover;
+    box-sizing: content-box;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .selectDetailButton {
+    position: relative;
+    width: 20px;
+    height: 19px;
+    border: 1px solid $header_background;
+    font-size: 0.8em;
+    padding-top: 5px;
+    margin-bottom: 8px;
+    line-height: 1.2em;
+    padding-left: 1px;
+    padding-right: 2px;
+    box-sizing: content-box;
+    cursor: pointer;
+  }
+
+  .selectDetailButtonSelected{
+    position: relative;
+    width: 20px;
+    height: 19px;
+    border: 1px solid $header_background;
+    background-color: $header_background;
+    font-size: 0.8em;
+    padding-top: 5px;
+    margin-bottom: 8px;
+    line-height: 1.2em;
+    padding-left: 1px;
+    padding-right: 2px;
+    box-sizing: content-box;
+    color: white;
+    cursor: default;
   }
 }

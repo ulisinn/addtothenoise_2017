@@ -2,6 +2,7 @@
  * Created by ulrichsinn on 04/19/2017.
  */
 
+export const ON_RESIZE = 'ON_RESIZE';
 export const REMOTE_LOAD_PENDING = 'REMOTE_LOAD_PENDING';
 export const REMOTE_LOAD_SUCCESS = 'REMOTE_LOAD_SUCCESS';
 export const REMOTE_LOAD_ERROR = 'REMOTE_LOAD_ERROR';
@@ -15,6 +16,16 @@ export const INIT_PORTFOLIO = 'INIT_PORTFOLIO';
 export const SHOW_PORTFOLIO_MASTER = 'SHOW_PORTFOLIO_MASTER';
 export const SHOW_PORTFOLIO_DETAIL = 'SHOW_PORTFOLIO_DETAIL';
 
+// META DATA
+
+export function setBrowserMetadata(data) {
+  return {
+    type: ON_RESIZE,
+    payload: {
+      data,
+    },
+  };
+}
 // REMOTE MESSAGES
 
 export function remoteLoadPending() {
@@ -29,9 +40,12 @@ export function remoteLoadError() {
   };
 }
 
-export function remoteLoadSuccess() {
+export function remoteLoadSuccess(data) {
   return {
     type: REMOTE_LOAD_SUCCESS,
+    payload: {
+      data,
+    },
   };
 }
 

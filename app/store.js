@@ -11,15 +11,16 @@ import {rootReducer} from './reducers/index';
 import {getRemoteData} from './actions/index';
 import thunk from 'redux-thunk';
 
-const base_url = 'http://addtothenoise.com/';
-const remote_url = base_url + 'cms_pages/get_site_data.php';
-const mock_url = 'mock/mock.json';
 const dev = true;
+export const baseUrl = (dev) ? 'http://localhost':'http://addtothenoise.com';
+const remote_url = baseUrl + '/cms_pages/get_site_data.php';
+const mock_url = '/mock/mock.json';
 const url = (dev) ? mock_url : remote_url;
 
 const logger = createLogger();
 const enhancer = compose(
-  applyMiddleware(logger, thunk),
+  // applyMiddleware(logger, thunk),
+  applyMiddleware(thunk),
   DevTools.instrument()
 );
 
