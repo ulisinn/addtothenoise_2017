@@ -4,11 +4,12 @@
 
 import '../styles/main.scss';
 
-import React, {Component} from 'react';
-import {Link} from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import PropTypes from 'prop-types';
 import Navigation from './navigation';
+import SplashNavigation from './splash_navigation';
 
 export default class Header extends Component {
   render() {
@@ -16,12 +17,16 @@ export default class Header extends Component {
       <div id="header">
         {this.props.location.pathname !== '/' ? <h1><Link to='/'>{this.props.navigation.name}</Link></h1> :
           <h1>{this.props.navigation.name}</h1>}
-        {this.props.location.pathname !== '/' ? this.showNavigation() : null}
+        {this.props.location.pathname !== '/' ? this.showNavigation() : this.showSplashNavigation()}
       </div>  );
   }
   
   showNavigation() {
     return <Navigation {...this.props.navigation} pathname={this.props.location.pathname}/>
+  }
+  
+  showSplashNavigation() {
+    return <SplashNavigation {...this.props.navigation} pathname={this.props.location.pathname}/>
   }
   
 }

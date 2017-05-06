@@ -3,19 +3,21 @@
  */
 import '../styles/main.scss';
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {baseUrl} from '../store';
+import { baseUrl } from '../store';
 
 import DetailImage from './DetailImage';
 import MainImage from './MainImage';
 import AudioPlayerPanel from './AudioPlayerPanel';
+import AudioPlayerPanelPhone from './AudioPlayerPanelPhone';
 import MoreButton from './MoreButton';
 import DetailSelector from './DetailSelector';
+import ProjectDescription from './ProjectDescription';
 
 export  default class PortfolioDetailAll extends Component {
-  constructor(props) {
+  constructor( props ) {
     super(props);
     this.state = {
       image: [],
@@ -384,12 +386,14 @@ export  default class PortfolioDetailAll extends Component {
     const detailPages = this.props.pageContent.detailPages || [];
     let image = [];
     if (detailPages.length) {
-      image = detailPages.map(function (item, index) {
+      image = detailPages.map(function ( item, index ) {
         return baseUrl + item.detailImage._default;
       });
       
-      image.splice(0, 0, baseUrl + this.props.pageContent.mainImage);
     }
+    
+    image.splice(0, 0, baseUrl + this.props.pageContent.mainImage);
+    
     this.setState({
       image: image,
       showMoreButton: true,
@@ -405,6 +409,7 @@ export  default class PortfolioDetailAll extends Component {
     const index = this.state.currentIndex;
     const currentImage = this.state.image[index];
     const bgColor = this.state.project.backgroundColor;
+    const controlsColor = (this.state.project.controlsColor) ? this.state.project.controlsColor : 'white';
     const isAudio = (this.state.mpeg) ? true : false;
     const mpeg = this.state.mpeg;
     let currentDescription = {};
@@ -417,29 +422,70 @@ export  default class PortfolioDetailAll extends Component {
       };
     }
     console.log('=== render', this.state.project, this.state.image);
+    if (this.props.isPhone) {
+      return this.getPhoneContent(this.state.image, currentDescription, bgColor, controlsColor, isAudio, mpeg);
+    } else {
+      return this.getDesktopContent(index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg);
+    }
+  }
+  
+  getDesktopContent( index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg ) {
     return (
       <div id="portfolioDetail" className="contentPanel">
         <div className="flexInner">
-          {(index === 0) ? null : <DetailSelector onSetCurrentIndex={(index) => this.onSetCurrentIndex(index)}
-                                                  imageList={this.state.image}
-                                                  currentIndex={this.state.currentIndex}/>}
-          {(index === 0) ? this.getMainImage(index, currentDescription, currentImage, bgColor, isAudio, mpeg) :
+          
+          {(index === 0) ? this.getMainImage(index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg) :
             <DetailImage currentDescription={currentDescription}
                          backgroundColor={this.state.project.backgroundColor}
                          image={currentImage}
                          currentIndex={index}/>}
-          {/*<p>PortfolioDetailAll</p>*/}
+          {(index === 0) ? null : <DetailSelector onSetCurrentIndex={( index ) => this.onSetCurrentIndex(index)}
+                                                  imageList={this.state.image}
+                                                  currentIndex={this.state.currentIndex}/>}
           {(index === 0 && this.state.image.length > 1) ? <MoreButton onMoreClick={() => this.onMoreClick()}/> : null}
         </div>
       </div>);
   }
   
-  getMainImage(index, currentDescription, currentImage, bgColor, isAudio, mpeg) {
-    return (isAudio) ? <AudioPlayerPanel currentDescription={currentDescription}
-                                    backgroundColor={bgColor}
-                                    image={currentImage}
-                                    currentIndex={index}
-                                    audio={mpeg}/>
+  getPhoneContent( images, currentDescription, bgColor, controlsColor, isAudio, mpeg ) {
+    console.log('getPhoneContent', images.length, currentDescription, bgColor, controlsColor, isAudio, mpeg);
+    const detailImagePhone = images.map(function ( item, index ) {
+      console.log('----- ', item);
+      return (isAudio) ? <AudioPlayerPanelPhone key={index}
+                                           currentDescription={currentDescription}
+                                           backgroundColor={bgColor}
+                                           controlsColor={controlsColor}
+                                           image={item}
+                                           currentIndex={index}
+                                           audio={mpeg}/> :
+        <div className='detailImagePhone' key={index}
+             style={{
+/*
+               backgroundColor: bgColor,
+*/
+             }}>
+          <img src={item} alt=""/>
+        </div>;
+    });
+    
+    return (
+      <div id="portfolioDetailPhone" className="contentPanel">
+        <div className="flexInnerPhone">
+          <ProjectDescription {...currentDescription}/>
+          {detailImagePhone}
+        </div>
+      </div>);
+  }
+  
+  getMainImage( index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg ) {
+    console.log('getMainImage', currentImage, this.state.image);
+    return (isAudio) ?
+      <AudioPlayerPanel currentDescription={currentDescription}
+                        backgroundColor={bgColor}
+                        controlsColor={controlsColor}
+                        image={currentImage}
+                        currentIndex={index}
+                        audio={mpeg}/>
       :
       <MainImage currentDescription={currentDescription}
                  backgroundColor={bgColor}
@@ -451,7 +497,7 @@ export  default class PortfolioDetailAll extends Component {
     this.setState({ currentIndex: 1 });
   }
   
-  onSetCurrentIndex(index) {
+  onSetCurrentIndex( index ) {
     this.setState({ currentIndex: index });
   }
 }
@@ -459,4 +505,6 @@ export  default class PortfolioDetailAll extends Component {
 
 PortfolioDetailAll.propTypes = {
   pageContent: PropTypes.object,
+  controlsColor: PropTypes.string,
+  isPhone: PropTypes.bool,
 };

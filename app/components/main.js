@@ -1,45 +1,47 @@
 import moment from 'moment';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/index';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import {baseUrl} from '../store';
+import { baseUrl } from '../store';
 
 const maxItems = 24;
 
 class Main extends Component {
   
-  constructor(props) {
+  constructor( props ) {
     super(props);
     // console.log('MAIN', this.props.state);
   }
   
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps( props ) {
     console.log('componentWillReceiveProps', props);
     this.render();
   }
   
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate( nextProps, nextState ) {
     console.log('shouldComponentUpdate', nextProps, nextState);
     
     return (nextProps.location.pathname === this.props.location.pathname) ? false : true;
   }
   
   render() {
-    console.log('MAIN RENDER', this.props.location);
     const parentComp = this;
+    const isPhone = this.props.state.metaDataReducer.data.isPhone;
+    console.log('MAIN RENDER', this.props.location, isPhone);
     
-    const childrenWithProps = React.Children.map(this.props.children, function (child) {
+    const childrenWithProps = React.Children.map(this.props.children, function ( child ) {
       return React.cloneElement(child, {
-        onPageClick: (id) => parentComp.onChildPageClick(id),
-        onPageMouseEnter: (id) => parentComp.onChildPageMouseEnter(id),
-        onPageMouseLeave: (id) => parentComp.onChildPageMouseLeave(id),
+        onPageClick: ( id ) => parentComp.onChildPageClick(id),
+        onPageMouseEnter: ( id ) => parentComp.onChildPageMouseEnter(id),
+        onPageMouseLeave: ( id ) => parentComp.onChildPageMouseLeave(id),
         pageContent: parentComp.getPageContent(),
         baseUrl: baseUrl,
+        isPhone: isPhone,
       });
     });
     
@@ -52,15 +54,15 @@ class Main extends Component {
     </div>;
   }
   
-  onChildPageClick(id) {
+  onChildPageClick( id ) {
     // console.log('onChildPageClick id', id);
   }
   
-  onChildPageMouseEnter(id) {
+  onChildPageMouseEnter( id ) {
     // console.log('onChildPageMouseEnter id', id);
   }
   
-  onChildPageMouseLeave(id) {
+  onChildPageMouseLeave( id ) {
     // console.log('onChildPageMouseLeave id', id);
   }
   
@@ -117,7 +119,7 @@ class Main extends Component {
         result.push(obj);
       }
     }
-    result.sort(function (a, b) {
+    result.sort(function ( a, b ) {
       if (moment(a.date) < moment(b.date)) {
         return true;
       } else {
@@ -130,7 +132,7 @@ class Main extends Component {
   
   //
   
-  getSelectedProjectData(id) {
+  getSelectedProjectData( id ) {
     const topLevelContent = this.props.state.portfolioReducer;
     let all = [];
     
@@ -143,7 +145,7 @@ class Main extends Component {
     if (all[0]) {
       // console.log(JSON.stringify(all[0]));
       return all[0];
-    }else{
+    } else {
       return all;
     }
   }
@@ -165,7 +167,7 @@ class Main extends Component {
     return this.getResult(all);
   }
   
-  getFilteredPortfolioContent(topLevelContent) {
+  getFilteredPortfolioContent( topLevelContent ) {
     let all = [];
     
     for (let prop in topLevelContent) {
@@ -176,7 +178,7 @@ class Main extends Component {
     return this.getResult(all);
   }
   
-  getResult(all) {
+  getResult( all ) {
     let result = [],
       range = Array.from(Array(maxItems).keys()),
       indices = [];
@@ -201,7 +203,7 @@ class Main extends Component {
   
   // GET OPED CONTENT
   
-  getOpedContent(topLevelContent) {
+  getOpedContent( topLevelContent ) {
     var tmp = document.createElement('p');
     tmp.innerHTML = topLevelContent.body;
     topLevelContent.bodyStripped = tmp.textContent || tmp.innerText;
@@ -221,13 +223,13 @@ Main.propTypes = {
 };
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ( state ) => {
   return {
     state,
   };
 };
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps( dispatch ) {
   return bindActionCreators(actionCreators, dispatch);
 }
 

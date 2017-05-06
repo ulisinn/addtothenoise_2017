@@ -1,0 +1,65 @@
+#portfolio_phone {
+  text-align: left;
+
+  #portfolioDetailPhone {
+    width: 80%;
+    height: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    border: 1px solid red;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  .thumbnail_phone {
+    //border-top: 1px solid red;
+    margin-bottom: 1em;
+    text-align: left;
+    overflow: hidden;
+  }
+
+  .thumbnail_title {
+    text-decoration: none;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+    color: $header_background;
+    font-size: 0.8em;
+  }
+
+  .thumbnail {
+    box-sizing: border-box;
+    position: relative;
+    width: 360px;
+    height: 240px;
+    border-bottom: none;
+    border-right: none;
+
+  }
+}
+
+.flexInnerPhone {
+  text-align: left;
+  position: relative;
+  border: none;
+  background-color: white;
+  align-self: center;
+  width: 80%;
+  margin-top: 4em;
+
+  .projectDescription {
+    position: relative;
+    margin-top: 3px;
+    font-size: 0.8em;
+    line-height: 1.2em;
+    height: auto;
+  }
+  .detailImagePhone {
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    img {
+      width: 100%;
+    }
+  }
+}

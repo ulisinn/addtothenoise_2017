@@ -3,16 +3,20 @@
  */
 
 import React from 'react';
+import {Link} from 'react-router';
 
 import PropTypes from 'prop-types';
 
-const SplashImage = ({ url }) =>
+const SplashImage = ( { url, id } ) =>
   (
-    <img className="splashImage" src={ url }/>
+    <Link to={'/project/' + id}>
+      <img className="splashImage" src={ url }/>
+    </Link>
   );
 
 SplashImage.propTypes = {
   url: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default SplashImage;

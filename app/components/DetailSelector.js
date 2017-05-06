@@ -42,5 +42,5 @@ export default class DetailSelector extends Component {
 DetailSelector.propTypes = {
   onSetCurrentIndex: PropTypes.func,
   imageList: PropTypes.array,
-  currentIndex: PropTypes.array,
+  currentIndex: PropTypes.number,
 };

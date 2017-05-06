@@ -11,6 +11,7 @@ $VegurRegular: 'vegurregular', Helvetica, Arial, sans-serif;
 $VegurLight: 'vegurlight', Helvetica, Arial, sans-serif;
 $VegurBold: 'vegurbold', Helvetica, Arial, sans-serif;
 
+
 .hidden {
   display: none;
 }
@@ -20,6 +21,10 @@ body {
   color: $header_background;
   font-family: $VegurRegular;
   font-size: 100%;
+}
+
+#topNode {
+  border: 1px solid red;
 }
 
 em {
@@ -35,16 +40,32 @@ em {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  @include mq('tablet') {
+    justify-content: center;
+  }
+
+  @include mq('tablet-wide') {
+    justify-content: center;
+    //height: 90%;
+  }
 }
 
 .flexInner {
+  padding-top: 4em;
+  /*
   border: 1px solid grey;
+  */
   background-color: white;
   align-self: center;
   text-align: center;
   width: 85%;
   max-width: 1025px;
+
+  @include mq('tablet') {
+    padding-top: 0;
+  }
 }
 
 .thumbnail, .blankThumbnail {
@@ -97,7 +118,6 @@ em {
 
   @include mq('tablet') {
     height: 40px;
-    width: 100%;
   }
 
   h1 {
@@ -126,8 +146,9 @@ em {
   #portfolioNav {
     color: $header_background;
     margin-left: 10px;
-    margin-top: -7px;
+    margin-top: -5px;
     font-size: 0.8em;
+    background-color: white;
 
     a {
       color: inherit;
@@ -149,7 +170,7 @@ em {
       padding-left: 8px;
       padding-right: 8px;
       overflow: hidden;
-      letter-spacing: default;
+      letter-spacing: inherit;
     }
     li.deselected {
       font-family: $VegurRegular;
@@ -159,9 +180,9 @@ em {
     }
 
     li.selected {
-      border-left: 1px #bfbeb2 solid;
-      border-right: 1px #bfbeb2 solid;
-      border-bottom: 1px #bfbeb2 solid;
+      border-left: 1px $header_background solid;
+      border-right: 1px $header_background solid;
+      border-bottom: 1px $header_background solid;
       font-family: $VegurBold;
       /*      padding-bottom: 4px;
             padding-left: 11px;
@@ -169,16 +190,30 @@ em {
       user-select: none;
       cursor: default;
     }
+    li.splashNav {
+      border-left: 1px $header_background solid;
+      border-right: 1px $header_background solid;
+      border-bottom: 1px $header_background solid;
+      position: absolute;
+      right: 2em;
+    }
 
     @include mq('tablet') {
       margin-left: 200px;
       margin-top: -7px;
       font-size: 0.9em;
+      background-color: transparent;
 
       li {
         padding-left: 11px;
         padding-right: 11px;
         letter-spacing: 0.07em;
+      }
+      li.splashNav {
+        margin-left: 0;
+        position: relative;
+        margin-left: 30px;
+
       }
     }
   }
@@ -192,12 +227,13 @@ em {
   z-index: 101;
   width: 100%;
   /*border: 1px solid grey;*/
-  margin-bottom: 5px;
+  margin-bottom: 0;
   margin-top: 2px;
   padding-left: 2.4em;
   background-color: white;
-  border-top: 2px #bfbeb2 solid;
+  border-top: 1px $header_background solid;
   padding-top: 5px;
+  padding-bottom: 5px;
   font-size: 0.8em;
 
   a {
@@ -211,12 +247,22 @@ em {
 /* SPLASH SCREEN*/
 
 #splash {
-  background-color: $content_background;
-  .contentPanel {
-    padding: 5%;
-  }
+  justify-content: center;
+  align-items: center;
   img {
     width: 100%;
+  }
+
+  .splashDescription {
+    text-align: left;
+    font-size: 0.8em;
+    margin-bottom: 1em;
+    border-left: 3px $header_background solid;
+    padding-left: 0.5em;
+    @include mq('tablet') {
+      font-size: 0.95em;
+      margin-left: 0;
+    }
   }
 }
 
@@ -227,6 +273,7 @@ OPED
 #oped {
   line-height: 1.3em;
   text-align: left;
+  justify-content: center;
 
   p {
     font-size: 0.8em;
@@ -277,44 +324,80 @@ OPED
 
 #portfolioDetail {
 
+
+  @include mq('tablet') {
+/*    width: 80%;
+    height: 90%;
+    margin-left: 5%;*/
+    //margin-top: 5%;
+  }
+
+  @include mq('desktop') {
+    width: 90%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
   .flexInner {
     position: relative;
     border: none;
     background-color: white;
     align-self: center;
     width: auto;
+    display: flex;
   }
 
   .detailImageContainer {
     text-align: left;
   }
   .mainImage {
-    height: 364px;
-    width: 768px;
+    text-align: right;
     background-repeat: no-repeat;
-    background-position-x: 100%;
+    overflow: hidden;
+
+    img {
+      //width:100%;
+      height: 100%;
+    }
+
+    @include mq('tablet') {
+      height: 364px;
+      width: 768px;
+    }
+    @include mq('desktop') {
+      height: 364px;
+      width: auto;
+    }
   }
 
   .moreButton {
     position: relative;
-    width: 105px;
-    height: 59px;
+    width: 99px;
+    height: 24px;
     background-image: url('../images/moreBtn.png');
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin-right: -110px;
+    margin-left: -5px;
+    margin-top: -18px;
     background-repeat: no-repeat;
+    background-size: contain;
     cursor: pointer;
-    padding-bottom: 0.5em;
+/*    padding-bottom: 0.5em;*/
+
+    @include mq('tablet') {
+      position: absolute;
+      right: 0;
+      bottom: 17px;
+      margin-right: -90px;
+      margin-left: 0;
+      margin-top: 0;
+      width: 80px;
+    }
   }
 
   .detailSelectorButtonContainer {
-    position: absolute;
-    top:0;
-    left: 0;
-    margin-left: -33px;
-    margin-top: -33px;
+/*    position: absolute;
+    top: 0;
+    right: -33px;
+    margin-top: -33px;*/
   }
 
   .closeDetailButton {
@@ -344,7 +427,7 @@ OPED
     cursor: pointer;
   }
 
-  .selectDetailButtonSelected{
+  .selectDetailButtonSelected {
     position: relative;
     width: 20px;
     height: 19px;
@@ -360,4 +443,19 @@ OPED
     color: white;
     cursor: default;
   }
+
+  #audioPlayerControls {
+    width: 50%;
+    max-width: 180px;
+    position: absolute;
+    bottom: 21px;
+    left:2px;
+
+    svg {
+      //border: 1px solid red;
+    }
+  }
 }
+
+
+@import 'phone';

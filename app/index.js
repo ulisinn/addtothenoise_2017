@@ -2,15 +2,15 @@ import './styles/main.scss';
 
 import 'react';
 import React from 'react';
-import {render} from 'react-dom';
-import {Router} from 'react-router';
+import { render } from 'react-dom';
+import { Router } from 'react-router';
 import routes from './routes';
 
-import {Provider} from 'react-redux';
-import store, {history} from './store';
-import {REMOTE_LOAD_SUCCESS, setBrowserMetadata} from './actions';
+import { Provider } from 'react-redux';
+import store, { history } from './store';
+import { REMOTE_LOAD_SUCCESS, setBrowserMetadata } from './actions';
 // UTIL
-import {actual} from 'actual';
+import { actual } from 'actual';
 import MobileDetect from 'mobile-detect';
 
 // CREATE ROOT ELEMENT
@@ -32,12 +32,16 @@ function onResize() {
   let deviceWidth = device[2];
   let deviceHeight = device[3];
   let orientation = null;
+  let isPhone = false;
   if (hasTouch) {
     orientation = (deviceHeight >= deviceWidth) ? 'portrait' : 'landscape';
   }
+  if (hasTouch && Math.min(deviceWidth, deviceHeight) < 700) {
+    isPhone = true;
+  }
   
   // console.log('resize', device, 'hasTouch', hasTouch);
-  store.dispatch(setBrowserMetadata({ hasTouch, width, height, deviceWidth, deviceHeight, orientation }));
+  store.dispatch(setBrowserMetadata({ hasTouch, width, height, deviceWidth, deviceHeight, orientation, isPhone }));
 }
 
 const listenToStateUnsubscribe = store.subscribe(_initialLoad);

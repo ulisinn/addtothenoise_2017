@@ -6,14 +6,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SplashImage from './SplashImage';
-import EnterButton from './EnterButton';
 
-const SplashScreen = ({ onPageClick, pageContent, baseUrl }) =>
+const SplashScreen = ( { onPageClick, pageContent, baseUrl } ) =>
   (
     <div id="splash" className="contentPanel">
       <div className="flexInner">
-        <EnterButton label='ENTER'/>
-        <SplashImage url={baseUrl + pageContent[1].landingPageImage}></SplashImage>
+        {/*<EnterButton label='ENTER'/>*/}
+        <p className='splashDescription'>{pageContent[0].alt}</p>
+        <SplashImage url={baseUrl + pageContent[0].landingPageImage} id={pageContent[0]._id}></SplashImage>
       </div>
     </div>
   );
@@ -21,7 +21,6 @@ const SplashScreen = ({ onPageClick, pageContent, baseUrl }) =>
 SplashScreen.propTypes = {
   text: PropTypes.string,
   margin: PropTypes.number,
-  props: PropTypes.obj,
   pageContent: PropTypes.array,
   baseUrl: PropTypes.string,
   onPageClick: PropTypes.func,

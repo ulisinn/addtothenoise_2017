@@ -15,10 +15,13 @@ const MainImage = ({ backgroundColor, image, currentDescription, currentIndex })
     <div
       className="mainImage"
       style={{
+/*
         backgroundImage: 'url(' + image + ')',
+*/
         backgroundColor: backgroundColor,
-      }}>
-      {(currentIndex > 0)?<img src={image }/>:null}
+      }}
+    >
+      {(currentIndex >= 0)?<img src={image }/>:null}
     </div>
     <ProjectDescription {...currentDescription}/>
   </div>

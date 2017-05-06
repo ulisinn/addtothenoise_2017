@@ -12,7 +12,7 @@ import {getRemoteData} from './actions/index';
 import thunk from 'redux-thunk';
 
 const dev = true;
-export const baseUrl = (dev) ? 'http://localhost':'http://addtothenoise.com';
+export const baseUrl = ''; //location.hostname; //(dev) ? 'http://localhost':'http://addtothenoise.com';
 const remote_url = baseUrl + '/cms_pages/get_site_data.php';
 const mock_url = '/mock/mock.json';
 const url = (dev) ? mock_url : remote_url;

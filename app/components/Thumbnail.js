@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 const Thumbnail = ({ onPageMouseEnter, onPageMouseLeave, onPageClick, backgroundColor, thumbnail, baseUrl, _id }) =>
   (
-    <Link to={'/project/' + _id} thumbnail={thumbnail}>
+    <Link to={'/project/' + _id}>
       <div className="thumbnail"
            style={{
              backgroundSize: 'cover',

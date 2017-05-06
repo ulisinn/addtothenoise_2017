@@ -7,10 +7,10 @@ import '../styles/main.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {actual} from 'actual';
+import AudioPlayer from './AudioPlayer';
 import ProjectDescription from './ProjectDescription';
 
-const AudioPlayerPanel = ({ backgroundColor, image, currentDescription, currentIndex, audio }) => (
+const AudioPlayerPanel = ({ backgroundColor, controlsColor, image, currentDescription, currentIndex, audio }) => (
   <div className='detailImageContainer'>
     <div
       className="mainImage"
@@ -20,13 +20,14 @@ const AudioPlayerPanel = ({ backgroundColor, image, currentDescription, currentI
       }}>
       {(currentIndex > 0) ? <img src={image }/> : null}
     </div>
-    <audio src={audio} controls={true}></audio>
+    <AudioPlayer audio={audio} controls={true} controlsColor={controlsColor}></AudioPlayer>
     <ProjectDescription {...currentDescription}/>
   </div>
 );
 
 
 AudioPlayerPanel.propTypes = {
+  controlsColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   image: PropTypes.string,
   currentDescription: PropTypes.object,
