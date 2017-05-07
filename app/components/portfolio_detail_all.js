@@ -4,8 +4,12 @@
 import '../styles/main.scss';
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/index';
 import { baseUrl } from '../store';
 
 import DetailImage from './DetailImage';
@@ -16,7 +20,7 @@ import MoreButton from './MoreButton';
 import DetailSelector from './DetailSelector';
 import ProjectDescription from './ProjectDescription';
 
-export  default class PortfolioDetailAll extends Component {
+class PortfolioDetailAll extends Component {
   constructor( props ) {
     super(props);
     this.state = {
@@ -380,6 +384,16 @@ export  default class PortfolioDetailAll extends Component {
     };
   }
   
+  componentWillMount() {
+    console.log('component will mount', this.props);
+    if (!this.props.location.query.id) {
+      browserHistory.push('/');
+    }
+    if (!this.props.pageContent) {
+      browserHistory.push('/');
+    }
+  }
+  
   componentDidMount() {
     this.setState({ project: this.props.pageContent });
     console.log('componentDidMount', this.state.project);
@@ -452,17 +466,17 @@ export  default class PortfolioDetailAll extends Component {
     const detailImagePhone = images.map(function ( item, index ) {
       console.log('----- ', item);
       return (isAudio) ? <AudioPlayerPanelPhone key={index}
-                                           currentDescription={currentDescription}
-                                           backgroundColor={bgColor}
-                                           controlsColor={controlsColor}
-                                           image={item}
-                                           currentIndex={index}
-                                           audio={mpeg}/> :
+                                                currentDescription={currentDescription}
+                                                backgroundColor={bgColor}
+                                                controlsColor={controlsColor}
+                                                image={item}
+                                                currentIndex={index}
+                                                audio={mpeg}/> :
         <div className='detailImagePhone' key={index}
              style={{
-/*
-               backgroundColor: bgColor,
-*/
+               /*
+                backgroundColor: bgColor,
+                */
              }}>
           <img src={item} alt=""/>
         </div>;
@@ -502,9 +516,54 @@ export  default class PortfolioDetailAll extends Component {
   }
 }
 
+function getPageContent( state, id ) {
+  const topLevelContent = state;
+  let all = [];
+  
+  for (let prop in topLevelContent) {
+    let obj = topLevelContent[prop];
+    if (parseInt(obj._id) == id) {
+      all.push(obj);
+    }
+  }
+  if (all[0]) {
+    // console.log(JSON.stringify(all[0]));
+    return all[0];
+  }
+  console.log('getPageContent', state, all.length);
+  if (all.length == 0) {
+    // browserHistory.push('/');
+  } else {
+    console.log('component will mount', this.props.location.query);
+    return all;
+  }
+}
+
+const mapStateToProps = ( state ) => {
+  const queryString = require('query-string');
+  const parsed = queryString.parse(location.search);
+  
+  console.log(' ================ mapStateToProps', parsed.id, state.metaDataReducer.data.isPhone);
+  return {
+    pageContent: getPageContent(state.portfolioReducer,  parsed.id),
+    controlsColor: '#ff0000',
+    isPhone: state.metaDataReducer.data.isPhone,
+  };
+};
+
+function mapDispatchToProps( dispatch ) {
+  return bindActionCreators(actionCreators, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PortfolioDetailAll);
 
 PortfolioDetailAll.propTypes = {
   pageContent: PropTypes.object,
   controlsColor: PropTypes.string,
   isPhone: PropTypes.bool,
+  query: PropTypes.object,
+  location: PropTypes.object,
 };

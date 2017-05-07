@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 const Thumbnail = ({ onPageMouseEnter, onPageMouseLeave, onPageClick, backgroundColor, thumbnail, baseUrl, _id }) =>
   (
-    <Link to={'/project/' + _id}>
+    <Link to={'/project?id=' + _id}>
       <div className="thumbnail"
            style={{
              backgroundSize: 'cover',
@@ -22,9 +22,6 @@ const Thumbnail = ({ onPageMouseEnter, onPageMouseLeave, onPageClick, background
            }}
            onMouseLeave={() => {
              onPageMouseLeave(_id);
-           }}
-           onClick={() => {
-             onPageClick(_id);
            }}
       >
       </div>

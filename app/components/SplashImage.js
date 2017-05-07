@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 
 const SplashImage = ( { url, id } ) =>
   (
-    <Link to={'/project/' + id}>
+    <Link to={'/project?id=' + id}>
       <img className="splashImage" src={ url }/>
     </Link>
   );

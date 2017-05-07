@@ -77,6 +77,7 @@ em {
   height: 90px;
   overflow: hidden;
   background-color: #e7e7df;
+  background-repeat: no-repeat;
   opacity: 1;
 }
 
@@ -398,6 +399,7 @@ OPED
     top: 0;
     right: -33px;
     margin-top: -33px;*/
+    padding-left: 0.5em;
   }
 
   .closeDetailButton {

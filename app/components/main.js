@@ -36,9 +36,6 @@ class Main extends Component {
     
     const childrenWithProps = React.Children.map(this.props.children, function ( child ) {
       return React.cloneElement(child, {
-        onPageClick: ( id ) => parentComp.onChildPageClick(id),
-        onPageMouseEnter: ( id ) => parentComp.onChildPageMouseEnter(id),
-        onPageMouseLeave: ( id ) => parentComp.onChildPageMouseLeave(id),
         pageContent: parentComp.getPageContent(),
         baseUrl: baseUrl,
         isPhone: isPhone,
@@ -54,18 +51,7 @@ class Main extends Component {
     </div>;
   }
   
-  onChildPageClick( id ) {
-    // console.log('onChildPageClick id', id);
-  }
-  
-  onChildPageMouseEnter( id ) {
-    // console.log('onChildPageMouseEnter id', id);
-  }
-  
-  onChildPageMouseLeave( id ) {
-    // console.log('onChildPageMouseLeave id', id);
-  }
-  
+ 
   // GET PAGE CONTENT
   
   getPageContent() {
@@ -98,12 +84,6 @@ class Main extends Component {
         content = this.getOpedContent(this.props.state.loadRemoteContent.data.oped[0]);
         return content;
     }
-    
-    let currentId = pathName.split('/');
-    currentId = currentId[currentId.length - 1];
-    console.log('pathname', currentId);
-    
-    content = this.getSelectedProjectData(currentId);
     return content;
   }
   
@@ -128,26 +108,6 @@ class Main extends Component {
     });
     
     return result;
-  }
-  
-  //
-  
-  getSelectedProjectData( id ) {
-    const topLevelContent = this.props.state.portfolioReducer;
-    let all = [];
-    
-    for (let prop in topLevelContent) {
-      let obj = topLevelContent[prop];
-      if (parseInt(obj._id) == id) {
-        all.push(obj);
-      }
-    }
-    if (all[0]) {
-      // console.log(JSON.stringify(all[0]));
-      return all[0];
-    } else {
-      return all;
-    }
   }
   
   // GET PORTFOLIO CONTENT
