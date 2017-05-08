@@ -22,7 +22,9 @@ export default class Header extends Component {
   }
   
   showNavigation() {
-    return <Navigation {...this.props.navigation} pathname={this.props.location.pathname}/>
+    return <Navigation {...this.props.navigation}
+                       siteData={this.props.siteData}
+                       pathname={this.props.location.pathname}/>
   }
   
   showSplashNavigation() {
@@ -34,6 +36,5 @@ export default class Header extends Component {
 Header.propTypes = {
   title: PropTypes.string,
   onNavClick: PropTypes.func,
+  siteData: PropTypes.object,
 };
-
-// export default Header;

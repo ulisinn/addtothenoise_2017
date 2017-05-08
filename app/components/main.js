@@ -32,7 +32,8 @@ class Main extends Component {
   render() {
     const parentComp = this;
     const isPhone = this.props.state.metaDataReducer.data.isPhone;
-    console.log('MAIN RENDER', this.props.location, isPhone);
+    const siteData = this.props.state.loadRemoteContent.data;
+    console.log('MAIN RENDER', this.props.location, isPhone, siteData);
     
     const childrenWithProps = React.Children.map(this.props.children, function ( child ) {
       return React.cloneElement(child, {
@@ -43,15 +44,18 @@ class Main extends Component {
     });
     
     return <div id="topNode">
-      <Header navigation={this.props.state.navigationReducer} location={this.props.location}></Header>
+      <Header navigation={this.props.state.navigationReducer}
+              siteData={siteData}
+              location={this.props.location}></Header>
       {childrenWithProps}
       {this.props.location.pathname !== '/' ?
-        <Footer metaData={this.props.state.metaDataReducer.data} navigation={this.props.state.navigationReducer}
+        <Footer metaData={this.props.state.metaDataReducer.data}
+                navigation={this.props.state.navigationReducer}
                 location={this.props.location}></Footer> : null}
     </div>;
   }
   
- 
+  
   // GET PAGE CONTENT
   
   getPageContent() {
@@ -179,6 +183,7 @@ Main.propTypes = {
   state: PropTypes.object,
   onNavClick: PropTypes.func,
   navigationReducer: PropTypes.object,
+  portfolioReducer: PropTypes.object,
   location: PropTypes.object,
 };
 

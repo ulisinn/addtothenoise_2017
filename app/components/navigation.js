@@ -3,14 +3,14 @@
  */
 import '../styles/main.scss';
 
-import React, {Component} from 'react';
-import {Link} from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 // import classNames from 'classnames'
 
 
 export default class Navigation extends Component {
-  constructor(props) {
+  constructor( props ) {
     super(props);
   }
   
@@ -22,9 +22,12 @@ export default class Navigation extends Component {
     </div>;
   }
   
-  createTopNavigation(arr, path) {
-    const nav = arr.map(function (item, index) {
-      let listItem;
+  createTopNavigation( arr, path ) {
+    const siteData = this.props.siteData;
+    const nav = arr.map(function ( item, index ) {
+      let listItem = null;
+      let navItemName = item.path.split('/')[1];
+      let showItem = (siteData[navItemName]) ? (siteData[navItemName].length > 0) ? true : false : false;
       if (item.path === path) {
         listItem = <li className="selected" key={index}>{item.label}</li>;
       } else {
@@ -32,6 +35,13 @@ export default class Navigation extends Component {
       }
       
       if (item.path === '/contact' || item.path === '/oped') {
+        listItem = null;
+      }
+      
+      if (navItemName === 'music' && showItem === false) {
+        listItem = null;
+      }
+      if (navItemName === 'other' && showItem === false) {
         listItem = null;
       }
       
@@ -45,6 +55,7 @@ export default class Navigation extends Component {
 
 Navigation.propTypes = {
   pages: PropTypes.array,
+  siteData: PropTypes.object,
   pathname: PropTypes.string,
   onNavClick: PropTypes.func,
 };
