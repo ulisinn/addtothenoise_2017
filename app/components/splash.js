@@ -12,8 +12,10 @@ const SplashScreen = ( { onPageClick, pageContent, baseUrl } ) =>
     <div id="splash" className="contentPanel">
       <div className="flexInner">
         {/*<EnterButton label='ENTER'/>*/}
+        {/*{baseUrl + pageContent[0].landingPageImage.src}*/}
+  
         <p className='splashDescription'>{pageContent[0].alt}</p>
-        <SplashImage url={baseUrl + pageContent[0].landingPageImage} id={pageContent[0]._id}></SplashImage>
+        <SplashImage url={baseUrl + pageContent[0].landingPageImage.src} id={pageContent[0]._id}></SplashImage>
       </div>
     </div>
   );

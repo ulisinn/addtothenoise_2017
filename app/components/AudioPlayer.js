@@ -23,11 +23,13 @@ export default class AudioPlayer extends Component {
       currentVolume: 0.75,
       currentVolumeFlag: 1,
       mounted: true,
+      audioFilesState:null,
     };
-    
+    this.tick = this.tick.bind(this);
   }
   
   componentDidMount() {
+    //
   }
   
   componentWillUnmount() {
@@ -39,21 +41,32 @@ export default class AudioPlayer extends Component {
     this.killInterval();
   }
   
+  
   startInterval() {
-    if (intervalID) {
+    if (this.state.intervalID) {
       this.killInterval();
     }
     
-    intervalID = setInterval(() => this.tick(), 1000);
-    console.log('startInterval', intervalID);
+    const intervalID = setInterval(() => this.tick(), 500);
+    this.setState({intervalID});
+    console.log('startInterval', this.state.intervalID);
   }
   
   killInterval() {
-    clearInterval(intervalID);
+    const interval = this.state.intervalID;
+    const intervalID = null;
+    clearInterval(interval);
+    this.setState({intervalID});
+    
   }
   
   
   tick() {
+    const audioFilesState = this.state.audioFilesState;
+      // console.log('****** tick', audioFile.state(),audioFilesState);
+    if(audioFilesState !== audioFile.state()){
+      this.setState({audioFilesState:audioFile.state()});
+    }
     let total = moment(audioFile.duration() * 1000).format('mm:ss'),
       now = moment(audioFile.seek() * 1000).format('mm:ss');
     
@@ -66,7 +79,10 @@ export default class AudioPlayer extends Component {
   }
   
   render() {
+    const audioFilesState = this.state.audioFilesState;
+  
     return (<AudioPlayerControls {...this.state}
+                                 audioFilesState={audioFilesState}
                                  controlsColor={this.props.controlsColor}
                                  onPlayBtnClick={() => this.onPlayBtnClick()}
                                  onPauseBtnClick={() => this.onPauseBtnClick()}
@@ -126,10 +142,10 @@ export default class AudioPlayer extends Component {
     this.startInterval();
   }
   
-  pauseAudio() {
-    audioFile.pause(audioID);
+    pauseAudio() {
+    console.log('PAUSE',audioFile,audioID );
+    audioFile.pause();
     this.setState({ isPaused: 1 });
-    
   }
 }
 

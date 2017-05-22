@@ -29,11 +29,12 @@ export default class AudioPlayerControls extends Component {
   
   
   render() {
-    console.log('----> render', this.props);
+    // console.log('----> render', this.props.audioFilesState);
+
     
     const playBtnStyle = (this.props.isPlaying === 1 ) ? (this.props.isPaused === 1 ) ? 'visible' : 'hidden' : 'visible';
     const pauseBtnStyle = (this.props.isPlaying === 1 ) ? (this.props.isPaused === 1 ) ? 'hidden' : 'visible' : 'hidden';
-    const currentTime = (this.props.currentTime) ? this.props.currentTime : '00:00';
+    const currentTime = (this.props.currentTime && this.props.audioFilesState ==='loaded') ? this.props.currentTime : '00:00';
     const duration = (this.props.duration) ? this.props.duration : '00:00';
     const controlsColor = this.props.controlsColor;
     const currentVolumeFlag = this.props.currentVolumeFlag;
@@ -141,4 +142,5 @@ AudioPlayerControls.propTypes = {
   onSpeakerBtnClick: PropTypes.func,
   currentVolumeFlag: PropTypes.number,
   controlsColor: PropTypes.string,
+  audioFilesState: PropTypes.string,
 };

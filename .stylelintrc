@@ -1,5 +1,13 @@
 {
   "rules": {
-    "color-hex-case": "lower"
+    "color-hex-case": "lower",
+    "comma-dangle": ["error", "always-multiline"],
+    // "indent": ["error", 0],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-unused-vars": 0,
+    // "no-unused-vars": ["warn"],
+    "no-console": 0
   }
 }

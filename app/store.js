@@ -8,13 +8,13 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import DevTools from './containers/DevTools';
 import {browserHistory} from 'react-router';
 import {rootReducer} from './reducers/index';
-import {getRemoteData} from './actions/index';
+import {getRemoteData, getNewRemoteData} from './actions/index';
 import thunk from 'redux-thunk';
 
-const dev = true;
-export const baseUrl = ''; //location.hostname; //(dev) ? 'http://localhost':'http://addtothenoise.com';
-const remote_url = baseUrl + '/cms_pages/get_site_data.php';
-const mock_url = '/mock/mock.json';
+const dev = false;
+export const baseUrl = (dev)?'http://localhost:8080':'http://addtothenoise.com';
+const remote_url = baseUrl + '/api/all.php';
+const mock_url = baseUrl + '/mock/mock.json';
 const url = (dev) ? mock_url : remote_url;
 
 const logger = createLogger();
@@ -31,6 +31,8 @@ const store = createStore(
   enhancer
 );
 
+// store.dispatch(getNewRemoteData('http://www.addtothenoise.com/api/all.php'));
 store.dispatch(getRemoteData(url));
+
 export const history = syncHistoryWithStore(browserHistory, store);
 export default store;

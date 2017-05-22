@@ -103,6 +103,8 @@ class Main extends Component {
         result.push(obj);
       }
     }
+    console.log('getSplashScreenImages', result);
+    
     result.sort(function ( a, b ) {
       if (moment(a.date) < moment(b.date)) {
         return true;

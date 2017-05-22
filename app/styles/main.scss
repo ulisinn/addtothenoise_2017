@@ -368,6 +368,8 @@ OPED
     @include mq('desktop') {
       height: 364px;
       width: auto;
+      min-width: 768px;
+
     }
   }
 
