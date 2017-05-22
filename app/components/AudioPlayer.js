@@ -15,6 +15,7 @@ export default class AudioPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      html5:true,
       isPlaying: 0,
       isPaused: 0,
       duration: '00:00',
