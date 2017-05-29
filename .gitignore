@@ -23,3 +23,5 @@ perch
 
 node_modules/
 records.json
+/cms_pages/
+/build/
