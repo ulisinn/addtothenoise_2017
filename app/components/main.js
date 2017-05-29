@@ -9,7 +9,6 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import { baseUrl } from '../store';
 
-const maxItems = 24;
 
 class Main extends Component {
   
@@ -103,7 +102,6 @@ class Main extends Component {
         result.push(obj);
       }
     }
-    console.log('getSplashScreenImages', result);
     
     result.sort(function ( a, b ) {
       if (moment(a.date) < moment(b.date)) {
@@ -113,6 +111,7 @@ class Main extends Component {
       }
     });
     
+    console.log('getSplashScreenImages', result);
     return result;
   }
   
@@ -145,26 +144,9 @@ class Main extends Component {
   }
   
   getResult( all ) {
-    let result = [],
-      range = Array.from(Array(maxItems).keys()),
-      indices = [];
-    
-    for (let i = 0; i < maxItems; i++) {
-      result.push({});
-    }
-    
-    while (range.length > 0) {
-      let randomInt = Math.floor(Math.random() * range.length);
-      indices.push(range.splice(randomInt, 1)[0]);
-    }
-    
-    while (all.length > 0 && indices.length > 0) {
-      let item = all.splice(0, 1)[0];
-      let index = indices.splice(0, 1)[0];
-      result[index] = item;
-    }
-    // console.log('getFilteredPortfolioContent', result);
-    return result;
+    const maxItems = all.length;
+
+    return all;
   }
   
   // GET OPED CONTENT

@@ -11,25 +11,16 @@ import PropTypes from 'prop-types';
 const ThumbnailPhone = ( { onPageMouseEnter, onPageMouseLeave, onPageClick, backgroundColor, thumbnail, baseUrl, _id, title, mainImage, mpeg } ) =>
   (
     <div className='thumbnail_phone'>
-      <Link to={'/project/' + _id}>
-        <div className="thumbnail"
+      <Link to={`/project/?id=${_id}`}>
+        <div className={(!mpeg) ?'thumbnail' : 'thumbnailMusic'}
              style={{
                backgroundSize: (!mpeg) ? 'cover' : 'contain',
                backgroundImage: 'url(' + baseUrl + mainImage + ')',
                backgroundColor: backgroundColor,
              }}
-             onMouseEnter={() => {
-               onPageMouseEnter(_id);
-             }}
-             onMouseLeave={() => {
-               onPageMouseLeave(_id);
-             }}
-             onClick={() => {
-               onPageClick(_id);
-             }}
         >
         </div>
-        <p className='thumbnail_title'>{(!mpeg) ? title : null}</p>
+        <p className='thumbnail_title'>{title} {`/project/?id=${_id}`}</p>
       </Link>
     </div>
   );

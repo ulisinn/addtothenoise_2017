@@ -85,7 +85,7 @@ export function initPortfolio(data) {
 
 
 export function getRemoteData(url) {
-  console.log('getRemoteData url', url);
+  //console.log('getRemoteData url', url);
   return (dispatch) => {
     dispatch(remoteLoadPending());
     fetch(url)
@@ -97,34 +97,13 @@ export function getRemoteData(url) {
       })
       .then((response) => response.json())
       .then((items) => {
-        console.log('getRemoteData',items);
+       // console.log('getRemoteData',items);
         const data = (url.indexOf('localhost') !== -1)?items:formatData(items.sets);
         const portfolio = createAllList(data);
         const nav = createNavigation(data);
         dispatch(initNavigation(nav));
         dispatch(initPortfolio(portfolio));
         return dispatch(remoteLoadSuccess(data));
-      })
-      .catch(() => {
-        dispatch(remoteLoadError());
-      });
-  };
-}
-export function getNewRemoteData(url) {
-  return (dispatch) => {
-    dispatch(remoteLoadPending());
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
-      })
-      .then((response) => response.json())
-      .then((items) => {
-        const data = formatData(items.sets);
-        console.log('formatData', data);
-  
       })
       .catch(() => {
         dispatch(remoteLoadError());
@@ -210,6 +189,9 @@ function formatData(items) {
       }
       if(prop === 'landingPageImage'){
         obj.landingPageImage = d[prop].src;
+        if(d[prop].src){
+         // console.log('landingPageImage', d.title, d[prop].src);
+        }
       }
       if(prop === 'mainImage'){
         obj.mainImage = d[prop].src;
@@ -219,7 +201,6 @@ function formatData(items) {
     return obj;
   });
   data.web =  items.web.map((d,i) =>{
-    // console.log(d,i);
     const obj ={};
     for(const prop in d){
       obj[prop] = d[prop];
@@ -228,6 +209,9 @@ function formatData(items) {
       }
       if(prop === 'landingPageImage'){
         obj.landingPageImage = d[prop].src;
+        if(d[prop].src){
+          // console.log('landingPageImage', d.title, d[prop].src);
+        }
       }
       if(prop === 'mainImage'){
         obj.mainImage = d[prop].src;
@@ -247,6 +231,9 @@ function formatData(items) {
       }
       if(prop === 'landingPageImage'){
         obj.landingPageImage = d[prop].src;
+        if(d[prop].src){
+          // console.log('landingPageImage', d.title, d[prop].src);
+        }
       }
       if(prop === 'mainImage'){
         obj.mainImage = d[prop].src;
@@ -258,7 +245,7 @@ function formatData(items) {
   });
   
   data.music =  items.music.map((d,i) =>{
-    console.log(d,i);
+    // console.log(d,i);
     const obj ={};
     for(const prop in d){
       obj[prop] = d[prop];
@@ -272,12 +259,13 @@ function formatData(items) {
         obj.mainImage = d[prop].src;
       }
       if(prop === 'mpeg'){
-        console.log('mpeg',d[prop]);
+        // console.log('mpeg',d[prop]);
         obj.mpeg = d[prop].src;
       }
     }
-    // console.log('\t', obj);
+    // console.log('\t music', obj);
     return obj;
   });
+  console.log('data', data);
   return data;
 }

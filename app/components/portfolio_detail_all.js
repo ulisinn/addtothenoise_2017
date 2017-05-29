@@ -31,7 +31,7 @@ class PortfolioDetailAll extends Component {
   }
   
   componentWillMount() {
-    console.log('component will mount', this.props);
+    // console.log(this.props.location.query,'component will mount', this.props);
     if (!this.props.location.query.id) {
       browserHistory.push('/');
     }
@@ -42,7 +42,7 @@ class PortfolioDetailAll extends Component {
   
   componentDidMount() {
     this.setState({ project: this.props.pageContent });
-    console.log('componentDidMount', this.state.project);
+    // console.log('componentDidMount', this.props);
     const detailPages = this.props.pageContent.detailPages || [];
     let image = [];
     if (detailPages.length) {
@@ -90,6 +90,7 @@ class PortfolioDetailAll extends Component {
   }
   
   getDesktopContent( index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg ) {
+    console.log('getDesktopContent', arguments);
     return (
       <div id="portfolioDetail" className="contentPanel">
         <div className="flexInner">
@@ -138,7 +139,7 @@ class PortfolioDetailAll extends Component {
   }
   
   getMainImage( index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg ) {
-    console.log('getMainImage', currentImage, this.state.image);
+    console.log('getMainImage', arguments, this.state.image);
     return (isAudio) ?
       <AudioPlayerPanel currentDescription={currentDescription}
                         backgroundColor={bgColor}
