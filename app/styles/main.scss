@@ -2,6 +2,8 @@
 @import 'colors';
 @import 'fonts';
 @import 'media_queries';
+@import "slick";
+@import "slick-theme";
 
 @include fontFace('vegurbold', '../fonts/vegur-bold-webfont');
 @include fontFace('vegurlight', '../fonts/vegur-light-webfont');
@@ -10,6 +12,11 @@
 $VegurRegular: 'vegurregular', Helvetica, Arial, sans-serif;
 $VegurLight: 'vegurlight', Helvetica, Arial, sans-serif;
 $VegurBold: 'vegurbold', Helvetica, Arial, sans-serif;
+
+* {
+  min-height: 0;
+  min-width: 0;
+}
 
 
 .hidden {
@@ -24,7 +31,7 @@ body {
 }
 
 #topNode {
-  border: 1px solid red;
+  //border: 1px solid red;
 }
 
 em {
@@ -54,10 +61,9 @@ em {
 
 .flexInner {
   padding-top: 4em;
-  /*
-  border: 1px solid grey;
-  */
-  background-color: white;
+
+  //border: 1px solid grey;
+   background-color: white;
   align-self: center;
   text-align: center;
   width: 85%;
@@ -254,6 +260,9 @@ em {
     width: 100%;
   }
 
+  .splashImageWrapper{
+    border: 1px solid red;
+  }
   .splashDescription {
     text-align: left;
     font-size: 0.8em;
@@ -355,7 +364,8 @@ OPED
     text-align: right;
     background-repeat: no-repeat;
     overflow: hidden;
-
+    height: 364px;
+    width: 364px;
     img {
       //width:100%;
       height: 100%;
