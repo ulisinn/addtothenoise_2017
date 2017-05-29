@@ -23,8 +23,8 @@ perch
 
 node_modules/
 records.json
-/cms_pages/
-/build/
-!/mock/
-/api/
-/audio_player.html
+cms_pages/
+build/
+mock/
+api/
+audio_player.html
