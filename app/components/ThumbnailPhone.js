@@ -20,7 +20,7 @@ const ThumbnailPhone = ( { onPageMouseEnter, onPageMouseLeave, onPageClick, back
              }}
         >
         </div>
-        <p className='thumbnail_title'>{title} {`/project/?id=${_id}`}</p>
+        <p className='thumbnail_title'>{title}</p>
       </Link>
     </div>
   );
