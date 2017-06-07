@@ -1,47 +1,49 @@
+// @flow
+
 import moment from 'moment';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as actionCreators from '../actions/index';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
-import { baseUrl } from '../store';
+import {baseUrl} from '../store';
 
 
 class Main extends Component {
-  
-  constructor( props ) {
+
+  constructor(props: PropTypes) {
     super(props);
     // console.log('MAIN', this.props.state);
   }
-  
-  componentWillReceiveProps( props ) {
+
+  componentWillReceiveProps(props: PropTypes) {
     console.log('componentWillReceiveProps', props);
     this.render();
   }
-  
-  shouldComponentUpdate( nextProps, nextState ) {
+
+  shouldComponentUpdate(nextProps: PropTypes, nextState: PropTypes) {
     console.log('shouldComponentUpdate', nextProps, nextState);
-    
+
     return (nextProps.location.pathname === this.props.location.pathname) ? false : true;
   }
-  
+
   render() {
-    const parentComp = this;
-    const isPhone = this.props.state.metaDataReducer.data.isPhone;
-    const siteData = this.props.state.loadRemoteContent.data;
+    const parentComp: Main = this;
+    const isPhone: boolean = this.props.state.metaDataReducer.data.isPhone;
+    const siteData: Object = this.props.state.loadRemoteContent.data;
     console.log('MAIN RENDER', this.props.location, isPhone, siteData);
-    
-    const childrenWithProps = React.Children.map(this.props.children, function ( child ) {
+
+    const childrenWithProps = React.Children.map(this.props.children, function (child) {
       return React.cloneElement(child, {
         pageContent: parentComp.getPageContent(),
         baseUrl: baseUrl,
         isPhone: isPhone,
       });
     });
-    
+
     return <div id="topNode">
       <Header navigation={this.props.state.navigationReducer}
               siteData={siteData}
@@ -53,14 +55,14 @@ class Main extends Component {
                 location={this.props.location}></Footer> : null}
     </div>;
   }
-  
-  
+
+
   // GET PAGE CONTENT
-  
+
   getPageContent() {
-    const pathName = this.props.location.pathname;
-    let content = [];
-    
+    const pathName: string = this.props.location.pathname;
+    let content: Array<any> = [];
+
     switch (pathName) {
       case '/':
         content = this.getSplashScreenImages();
@@ -89,69 +91,69 @@ class Main extends Component {
     }
     return content;
   }
-  
+
   // GET SPLASH SCREEN IMAGES
-  
+
   getSplashScreenImages() {
     const topLevelContent = this.props.state.portfolioReducer;
     let result = [];
-    
+
     for (let prop in topLevelContent) {
       let obj = topLevelContent[prop];
       if (obj.displayLandingPageImage) {
         result.push(obj);
       }
     }
-    
-    result.sort(function ( a, b ) {
+
+    result.sort(function (a, b) {
       if (moment(a.date) < moment(b.date)) {
         return true;
       } else {
         return false;
       }
     });
-    
+
     console.log('getSplashScreenImages', result);
     return result;
   }
-  
+
   // GET PORTFOLIO CONTENT
-  
+
   getAllPortfolioContent() {
     const topLevelContent = this.props.state.portfolioReducer;
-    
+
     let all = [];
-    
+
     for (let prop in topLevelContent) {
       let obj = topLevelContent[prop];
       if (!obj.mpeg) {
         all.push(obj);
       }
     }
-    
+
     return this.getResult(all);
   }
-  
-  getFilteredPortfolioContent( topLevelContent ) {
+
+  getFilteredPortfolioContent(topLevelContent) {
     let all = [];
-    
+
     for (let prop in topLevelContent) {
       let obj = topLevelContent[prop];
       all.push(obj);
     }
-    
+
     return this.getResult(all);
   }
-  
-  getResult( all ) {
+
+  getResult(all) {
     const maxItems = all.length;
 
     return all;
   }
-  
+
   // GET OPED CONTENT
-  
-  getOpedContent( topLevelContent ) {
+
+  getOpedContent(topLevelContent) {
     var tmp = document.createElement('p');
     tmp.innerHTML = topLevelContent.body;
     topLevelContent.bodyStripped = tmp.textContent || tmp.innerText;
@@ -172,13 +174,13 @@ Main.propTypes = {
 };
 
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
   return {
     state,
   };
 };
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 

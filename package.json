@@ -52,6 +52,7 @@
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "2.0.0",
     "file-loader": "^0.10.1",
+    "flow-bin": "^0.47.0",
     "git-revision-webpack-plugin": "^2.4.1",
     "glob": "^7.1.1",
     "howler": "^2.0.3",
