@@ -34,8 +34,8 @@ export default class AudioPlayerControls extends Component {
     
     const playBtnStyle = (this.props.isPlaying === 1 ) ? (this.props.isPaused === 1 ) ? 'visible' : 'hidden' : 'visible';
     const pauseBtnStyle = (this.props.isPlaying === 1 ) ? (this.props.isPaused === 1 ) ? 'hidden' : 'visible' : 'hidden';
-    const currentTime = (this.props.currentTime && this.props.audioFilesState ==='loaded') ? this.props.currentTime : '00:00';
-    const duration = (this.props.duration) ? this.props.duration : '00:00';
+    const currentTime = (this.props.currentTime) ? this.props.currentTime : '00:00';
+    const duration = (this.props.duration) ? `/${this.props.duration}` : '/00:00';
     const controlsColor = this.props.controlsColor;
     const currentVolumeFlag = this.props.currentVolumeFlag;
     
@@ -64,7 +64,7 @@ export default class AudioPlayerControls extends Component {
             <rect x='18' y='13' width='6' height='22' fill={controlsColor}/>
             <rect x='27' y='13' width='6' height='22' fill={controlsColor}/>
           </g>
-          <text id='Durations' transform='translate(52 29.28)'fill={controlsColor}>{currentTime}/{duration}</text>
+          <text id='Durations' transform='translate(52 29.28)'fill={controlsColor}>{currentTime}{duration}</text>
           
           <g transform='translate(-130 0)'>
             <g id='Speaker'>

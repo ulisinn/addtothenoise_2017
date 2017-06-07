@@ -15,7 +15,8 @@ export default class AudioPlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      html5:true,
+      html5: true,
+      preload: true,
       isPlaying: 0,
       isPaused: 0,
       duration: '00:00',
@@ -23,16 +24,16 @@ export default class AudioPlayer extends Component {
       currentVolume: 0.75,
       currentVolumeFlag: 1,
       mounted: true,
-      audioFilesState:null,
-      audioFile:null,
+      audioFilesState: null,
+      audioFile: null,
     };
     this.tick = this.tick.bind(this);
   }
-  
+
   componentDidMount() {
-    this.setState({audioFile:null});
+    this.setState({audioFile: null});
   }
-  
+
   componentWillUnmount() {
     try {
       this.state.audioFile.stop();
@@ -41,47 +42,47 @@ export default class AudioPlayer extends Component {
     }
     this.killInterval();
   }
-  
-  
+
+
   startInterval() {
     if (this.state.intervalID) {
       this.killInterval();
     }
-    
+
     const intervalID = setInterval(() => this.tick(), 500);
     this.setState({intervalID});
     console.log('startInterval', this.state.intervalID);
   }
-  
+
   killInterval() {
     const interval = this.state.intervalID;
     const intervalID = null;
     clearInterval(interval);
     this.setState({intervalID});
-    
+
   }
-  
-  
+
+
   tick() {
     const audioFilesState = this.state.audioFilesState;
-      // console.log('****** tick', this.state.audioFile.state(),audioFilesState);
-    if(audioFilesState !== this.state.audioFile.state()){
-      this.setState({audioFilesState:audioFile.state()});
+    // console.log('****** tick', this.state.audioFile.state(),audioFilesState);
+    if (audioFilesState !== this.state.audioFile.state()) {
+      this.setState({audioFilesState: audioFile.state()});
     }
     let total = moment(this.state.audioFile.duration() * 1000).format('mm:ss'),
       now = moment(this.state.audioFile.seek() * 1000).format('mm:ss');
-    
+
     this.setState({
       currentTime: now,
       duration: total,
     });
-    
+
     // console.log('tick', now + ' / ' + total);
   }
-  
+
   render() {
     const audioFilesState = this.state.audioFilesState;
-  
+
     return (<AudioPlayerControls {...this.state}
                                  audioFilesState={audioFilesState}
                                  controlsColor={this.props.controlsColor}
@@ -90,23 +91,23 @@ export default class AudioPlayer extends Component {
                                  onSpeakerBtnClick={() => this.onSpeakerBtnClick()}
     />);
   }
-  
+
   onPlayBtnClick() {
     // console.log('onPlayBtnClick', this);
     this.playAudio();
   }
-  
+
   onPauseBtnClick() {
     console.log('onPauseBtnClick', this);
     this.pauseAudio();
   }
-  
+
   onSpeakerBtnClick() {
     let currentVolume, currentVolumeFlag = this.state.currentVolumeFlag;
-    
+
     currentVolumeFlag = (currentVolumeFlag === 0) ? 1 : 0;
     currentVolume = (currentVolumeFlag === 0) ? 0 : 0.75;
-    this.setState({ currentVolumeFlag, currentVolume });
+    this.setState({currentVolumeFlag, currentVolume});
     try {
       this.state.audioFile.volume(currentVolume);
     } catch (e) {
@@ -114,7 +115,7 @@ export default class AudioPlayer extends Component {
     }
     console.log('onSpeakerBtnClick', this.state);
   }
-  
+
   playAudio() {
     console.log('PLAY AUDIO', this.props);
     const audio = this.props.audio;
@@ -127,19 +128,21 @@ export default class AudioPlayer extends Component {
         isPaused: 0,
       });
     };
-    
+
     if (!this.state.audioFile) {
       audioFile = new Howl({
         src: [audio],
         volume: this.state.currentVolume,
+        html5:this.state.html5,
+        preload:this.state.preload,
         onend: audioEnd,
-        onpause:() =>{
+        onpause: () => {
           // console.log('onpause', arguments);
         },
       });
       this.setState({audioFile});
     }
-    
+
     audioID = this.state.audioFile.play();
     // console.log('audioID',audioID);
     this.setState({
@@ -148,11 +151,11 @@ export default class AudioPlayer extends Component {
     });
     this.startInterval();
   }
-  
-    pauseAudio() {
-    console.log('PAUSE',this.state.audioFile,audioID );
+
+  pauseAudio() {
+    console.log('PAUSE', this.state.audioFile, audioID);
     this.state.audioFile.pause();
-    this.setState({ isPaused: 1 });
+    this.setState({isPaused: 1});
   }
 }
 
