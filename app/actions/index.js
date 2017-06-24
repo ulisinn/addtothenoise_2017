@@ -1,7 +1,13 @@
 /**
  * Created by ulrichsinn on 04/19/2017.
  */
+
+// @flow
+
+import axios from 'axios';
 import * as _ from 'lodash';
+import * as Immutable from 'immutable';
+import {fromJS} from 'immutable';
 
 export const ON_RESIZE = 'ON_RESIZE';
 export const REMOTE_LOAD_PENDING = 'REMOTE_LOAD_PENDING';
@@ -19,7 +25,7 @@ export const SHOW_PORTFOLIO_DETAIL = 'SHOW_PORTFOLIO_DETAIL';
 
 // META DATA
 
-export function setBrowserMetadata(data) {
+export function setBrowserMetadata(data: any) {
   return {
     type: ON_RESIZE,
     payload: {
@@ -27,6 +33,7 @@ export function setBrowserMetadata(data) {
     },
   };
 }
+
 // REMOTE MESSAGES
 
 export function remoteLoadPending() {
@@ -41,7 +48,7 @@ export function remoteLoadError() {
   };
 }
 
-export function remoteLoadSuccess(data) {
+export function remoteLoadSuccess(data: any) {
   return {
     type: REMOTE_LOAD_SUCCESS,
     payload: {
@@ -52,7 +59,7 @@ export function remoteLoadSuccess(data) {
 
 // NAVIGATION MESSAGES
 
-export function initNavigation(data) {
+export function initNavigation(data: any) {
   return {
     type: INIT_NAVIGATION,
     payload: {
@@ -61,7 +68,7 @@ export function initNavigation(data) {
   };
 }
 
-export function navClick(id) {
+export function navClick(id: string) {
   return {
     type: NAV_CLICK,
     payload: {
@@ -72,7 +79,7 @@ export function navClick(id) {
 
 // PORTFOLIO MESSAGES
 
-export function initPortfolio(data) {
+export function initPortfolio(data: any) {
 
   return {
     type: INIT_PORTFOLIO,
@@ -81,24 +88,31 @@ export function initPortfolio(data) {
     },
   };
 }
+
 //
 
 
-export function getRemoteData(url) {
-  //console.log('getRemoteData url', url);
-  return (dispatch) => {
+export function getRemoteData(url: string) {
+  console.log('getRemoteData url', url);
+  return (dispatch: Function) => {
     dispatch(remoteLoadPending());
-    fetch(url)
+    axios.get(url)
       .then((response) => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response;
+        console.log('getRemoteData THEN url', response.data.sets);
+
+        /*        if (!response.data.sets) {
+                  throw Error(response.statusText);
+                }*/
+        return response.data;
       })
-      .then((response) => response.json())
       .then((items) => {
-       // console.log('getRemoteData',items);
-        const data = (url.indexOf('localhost') !== -1)?items:formatData(items.sets);
+        const data = (url.indexOf('localhost') !== -1) ? items : formatData(items.sets);
+        const map: Immutable.Map<string, any> = fromJS(data);
+        const keys: Array<string> = [...map.keys()];
+        const val: Immutable.List<any> = map.get(keys[0]);
+
+        console.log('getRemoteData', val.get(0),map.size);
+
         const portfolio = createAllList(data);
         const nav = createNavigation(data);
         dispatch(initNavigation(nav));
@@ -145,97 +159,98 @@ function formatData(items) {
         '_sortvalue': '1000',
       },
     ],
-    about:[],
-    oped:[],
-    print:[],
-    web:[],
-    other:[],
-    music:[],
+    about: [],
+    oped: [],
+    print: [],
+    web: [],
+    other: [],
+    music: [],
   };
-  
+
   // build header
-  
+
   data.header[0].pages = items.navigation.map((d, i) => {
     return _.pick(d, 'label', 'path');
   });
-  
+
   // build about and oped
-  
-  items.pages.forEach((item) =>{
-    if(item.heading === 'oped'){
-      const obj ={};
+
+  items.pages.forEach((item) => {
+    if (item.heading === 'oped') {
+      const obj = {};
       obj._id = item._id;
       obj.body = item['body'];
       obj.author = item.author_family_name;
       data.oped.push(obj);
     }
-    if(item.heading === 'about'){
-      const obj ={};
+    if (item.heading === 'about') {
+      const obj = {};
       obj._id = item._id;
       obj.body = item['body'];
       obj.author = item.author_family_name;
       data.about.push(obj);
     }
   });
-  {/*{baseUrl + pageContent[0].landingPageImage.src}*/}
-  
-  data.print =  items.print.map((d,i) =>{
+  {/*{baseUrl + pageContent[0].landingPageImage.src}*/
+  }
+
+  data.print = items.print.map((d, i) => {
     // console.log(d,i);
-    const obj ={};
-    for(const prop in d){
+    const obj = {};
+    for (const prop in d) {
       obj[prop] = d[prop];
-      if(prop === 'thumbnail'){
+      if (prop === 'thumbnail') {
         obj.thumbnail = d[prop].src;
       }
-      if(prop === 'landingPageImage'){
+      if (prop === 'landingPageImage') {
         obj.landingPageImage = d[prop].src;
-        if(d[prop].src){
-         // console.log('landingPageImage', d.title, d[prop].src);
-        }
-      }
-      if(prop === 'mainImage'){
-        obj.mainImage = d[prop].src;
-      }
-    }
-      // console.log('\t', obj);
-    return obj;
-  });
-  data.web =  items.web.map((d,i) =>{
-    const obj ={};
-    for(const prop in d){
-      obj[prop] = d[prop];
-      if(prop === 'thumbnail'){
-        obj.thumbnail = d[prop].src;
-      }
-      if(prop === 'landingPageImage'){
-        obj.landingPageImage = d[prop].src;
-        if(d[prop].src){
+        if (d[prop].src) {
           // console.log('landingPageImage', d.title, d[prop].src);
         }
       }
-      if(prop === 'mainImage'){
+      if (prop === 'mainImage') {
         obj.mainImage = d[prop].src;
       }
     }
     // console.log('\t', obj);
     return obj;
   });
-  
-  data.other =  items.other.map((d,i) =>{
-    // console.log(d,i);
-    const obj ={};
-    for(const prop in d){
+  data.web = items.web.map((d, i) => {
+    const obj = {};
+    for (const prop in d) {
       obj[prop] = d[prop];
-      if(prop === 'thumbnail'){
+      if (prop === 'thumbnail') {
         obj.thumbnail = d[prop].src;
       }
-      if(prop === 'landingPageImage'){
+      if (prop === 'landingPageImage') {
         obj.landingPageImage = d[prop].src;
-        if(d[prop].src){
+        if (d[prop].src) {
           // console.log('landingPageImage', d.title, d[prop].src);
         }
       }
-      if(prop === 'mainImage'){
+      if (prop === 'mainImage') {
+        obj.mainImage = d[prop].src;
+      }
+    }
+    // console.log('\t', obj);
+    return obj;
+  });
+
+  data.other = items.other.map((d, i) => {
+    // console.log(d,i);
+    const obj = {};
+    for (const prop in d) {
+      obj[prop] = d[prop];
+      if (prop === 'thumbnail') {
+        obj.thumbnail = d[prop].src;
+      }
+      if (prop === 'landingPageImage') {
+        obj.landingPageImage = d[prop].src;
+        if (d[prop].src) {
+          // console.log('landingPageImage', d.title, d[prop].src);
+        }
+      }
+      if (prop === 'mainImage') {
         obj.mainImage = d[prop].src;
       }
 
@@ -243,22 +258,22 @@ function formatData(items) {
     // console.log('\t', obj);
     return obj;
   });
-  
-  data.music =  items.music.map((d,i) =>{
+
+  data.music = items.music.map((d, i) => {
     // console.log(d,i);
-    const obj ={};
-    for(const prop in d){
+    const obj = {};
+    for (const prop in d) {
       obj[prop] = d[prop];
-      if(prop === 'thumbnail'){
+      if (prop === 'thumbnail') {
         obj.thumbnail = d[prop].src;
       }
-      if(prop === 'landingPageImage'){
+      if (prop === 'landingPageImage') {
         obj.landingPageImage = d[prop].src;
       }
-      if(prop === 'mainImage'){
+      if (prop === 'mainImage') {
         obj.mainImage = d[prop].src;
       }
-      if(prop === 'mpeg'){
+      if (prop === 'mpeg') {
         // console.log('mpeg',d[prop]);
         obj.mpeg = d[prop].src;
       }
