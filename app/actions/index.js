@@ -6,8 +6,6 @@
 
 import axios from 'axios';
 import * as _ from 'lodash';
-import * as Immutable from 'immutable';
-import {fromJS} from 'immutable';
 
 export const ON_RESIZE = 'ON_RESIZE';
 export const REMOTE_LOAD_PENDING = 'REMOTE_LOAD_PENDING';
@@ -107,12 +105,6 @@ export function getRemoteData(url: string) {
       })
       .then((items) => {
         const data = (url.indexOf('localhost') !== -1) ? items : formatData(items.sets);
-        const map: Immutable.Map<string, any> = fromJS(data);
-        const keys: Array<string> = [...map.keys()];
-        const val: Immutable.List<any> = map.get(keys[0]);
-
-        console.log('getRemoteData', val.get(0),map.size);
-
         const portfolio = createAllList(data);
         const nav = createNavigation(data);
         dispatch(initNavigation(nav));

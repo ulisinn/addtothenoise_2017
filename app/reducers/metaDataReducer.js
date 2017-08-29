@@ -4,7 +4,7 @@
 
 import {
   ON_RESIZE,
-} from '../actions';
+} from '../store';
 
 export default function metaData(state = {}, action) {
   // console.log('STATIC CONTENT REDUCER', action);
@@ -15,7 +15,7 @@ export default function metaData(state = {}, action) {
         ...action.payload,
         remoteData: action.type,
       };
-    
+
     default:
       return state;
   }

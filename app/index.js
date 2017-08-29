@@ -2,15 +2,15 @@ import './styles/main.scss';
 
 import 'react';
 import React from 'react';
-import { render } from 'react-dom';
-import { Router } from 'react-router';
+import {render} from 'react-dom';
+import {Router} from 'react-router';
 import routes from './routes';
 
-import { Provider } from 'react-redux';
-import store, { history } from './store';
-import { REMOTE_LOAD_SUCCESS, setBrowserMetadata } from './actions';
+import {Provider} from 'react-redux';
+import store, {history, REMOTE_LOAD_SUCCESS} from './store';
+import {setBrowserMetadata} from './actions';
 // UTIL
-import { actual } from 'actual';
+import {actual} from 'actual';
 import MobileDetect from 'mobile-detect';
 
 // CREATE ROOT ELEMENT
@@ -39,16 +39,16 @@ function onResize() {
   if (hasTouch && Math.min(deviceWidth, deviceHeight) < 700) {
     isPhone = true;
   }
-  
+
   // console.log('resize', device, 'hasTouch', hasTouch);
-  store.dispatch(setBrowserMetadata({ hasTouch, width, height, deviceWidth, deviceHeight, orientation, isPhone }));
+  store.dispatch(setBrowserMetadata({hasTouch, width, height, deviceWidth, deviceHeight, orientation, isPhone}));
 }
 
 const listenToStateUnsubscribe = store.subscribe(_initialLoad);
 
 function _initialLoad() {
   const state = store.getState().loadRemoteContent;
-  
+
   if (state.remoteData === REMOTE_LOAD_SUCCESS) {
     listenToStateUnsubscribe();
     onResize();
@@ -63,7 +63,6 @@ function _initialLoad() {
       </Provider>,
       rootElement
     );
-    
   }
 }
 

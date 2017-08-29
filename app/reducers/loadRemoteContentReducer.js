@@ -8,7 +8,7 @@ import {
   REMOTE_LOAD_PENDING,
   REMOTE_LOAD_SUCCESS,
   REMOTE_DATA_READY,
-} from '../actions';
+} from '../store';
 
 export default function loadRemoteContent(state = {}, action) {
   // console.log('STATIC CONTENT REDUCER', action);

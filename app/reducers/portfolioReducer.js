@@ -4,7 +4,12 @@
 /**
  * Created by ulrichsinn on 04/21/2017.
  */
-import {INIT_PORTFOLIO, SHOW_PORTFOLIO_DETAIL, SHOW_PORTFOLIO_MASTER} from '../actions/index';
+import {
+  INIT_PORTFOLIO,
+  SHOW_PORTFOLIO_DETAIL,
+  SHOW_PORTFOLIO_MASTER,
+} from '../store';
+
 export default function portfolioReducer(state = {}, action) {
   switch (action.type) {
     case INIT_PORTFOLIO: {
@@ -12,21 +17,20 @@ export default function portfolioReducer(state = {}, action) {
       return {
         ...state,
         ...action.payload.data,
-      }
-        ;
+      };
     }
     case SHOW_PORTFOLIO_MASTER:
       return {
         ...state,
         currentPage: action.payload.id,
       };
-    
+
     case SHOW_PORTFOLIO_DETAIL:
       return {
         ...state,
         currentPage: action.payload.id,
       };
-    
+
     default:
       return state;
   }

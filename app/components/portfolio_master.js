@@ -78,7 +78,7 @@ export default class PortfolioMaster extends Component {
         content.pop();
       }
     }else{
-      while(content.length >= maxItems){
+      while(content.length > maxItems){
         content.pop();
       }
     }

@@ -1,7 +1,7 @@
 /**
  * Created by ulrichsinn on 04/21/2017.
  */
-import {INIT_NAVIGATION, NAV_CLICK} from '../actions/index';
+import {INIT_NAVIGATION, NAV_CLICK} from '../store';
 export default function navigationReducer(state = {}, action) {
   // console.log('NAV CLICK REDUCER', action);
   
