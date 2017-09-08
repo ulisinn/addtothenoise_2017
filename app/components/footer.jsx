@@ -22,10 +22,25 @@ export default class Footer extends Component {
         <a href={'https://www.instagram.com/laikasinn/'} target={'_blank'} style={{marginRight: '0.6em'}}>
           <Icon name="instagram" style={{fontSize: '1.3em'}}/>
         </a>
-        <a href={'https://www.linkedin.com/in/anabelsinn/'} target={'_blank'} style={{marginRight: '0.6em'}}>
+        <a href={'https://www.linkedin.com/in/anabelsinn/'} target={'_blank'}
+           style={{marginLeft: '0.6em', marginRight: '0.6em'}}>
+          <Icon name="venus" style={{color: '#bfbeb2', fontSize: '1.1em'}}/>
+          <Icon name="caret-right"
+                style={{color: '#bfbeb2', marginLeft: '0.3em', marginRight: '0.3em', fontSize: '1.1em'}}/>
           <Icon name="linkedin" style={{fontSize: '1.1em'}}/>
         </a>
-        You can <a href="mailto:contact@addtothenoise.com?Subject=Hello">contact</a> addtothenoise here.
+        <a href={'https://www.linkedin.com/in/ulrich-sinn/'} target={'_blank'}
+           style={{marginLeft: '0.6em', marginRight: '0.6em'}}>
+          <Icon name="mars" style={{color: '#bfbeb2', fontSize: '1.1em'}}/>
+          <Icon name="caret-right"
+                style={{color: '#bfbeb2', marginLeft: '0.3em', marginRight: '0.3em', fontSize: '1.1em'}}/>
+          <Icon name="linkedin" style={{fontSize: '1.1em'}}/>
+        </a>
+        <a href={'mailto:contact@addtothenoise.com?Subject=Hello'}
+           style={{marginLeft: '0.6em', marginRight: '0.8em'}}>
+          <Icon name="envelope" style={{fontSize: '1.1em'}}/>
+        </a>
+        {/*You can <a href="mailto:contact@addtothenoise.com?Subject=Hello">contact</a> addtothenoise here.*/}
         {this.getLine2()}
       </div>  );
   }
