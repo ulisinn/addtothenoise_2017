@@ -241,6 +241,7 @@ em {
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 0.8em;
+  color: $header_background;
 
   a {
     font-family: 'vegurbold';
@@ -250,8 +251,8 @@ em {
   }
 
   .footerIcon {
-    color: $body_orange;
-    font-size: 1.1em;
+    color: $icon_color;
+    font-size: 1.3em;
   }
 }
 
@@ -292,14 +293,28 @@ OPED
   p {
     font-size: 0.8em;
     margin-bottom: 2em;
+    color: $header_background;
   }
 
   .flexInner {
-    border: none;
+    //border: 1px solid red;
     align-self: center;
     text-align: left;
     padding: 1em;
     max-width: 750px;
+  }
+
+  .question {
+    color: $icon_color;
+    margin-bottom: 0.5em;
+  }
+  .answer {
+    p {
+      margin: 0;
+      margin-bottom: 0.4em;
+    }
+    margin-bottom: 1em;
+
   }
 }
 

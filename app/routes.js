@@ -12,13 +12,12 @@ import Oped from './components/oped';
 import PortfolioMaster from './components/portfolio_master';
 import PortfolioDetailAll from './components/portfolio_detail_all';
 
-
 export default (
   <Route path="/" component={Main}>
     <IndexRoute component={SplashScreen}/>
     <Route path="/about" component={About}/>
     <Route path="/opinion" component={Oped}/>
-    <Route path="/portfolio" component={PortfolioMaster} />
+    <Route path="/portfolio" component={PortfolioMaster}/>
     <Route path="/project(/:postId)" component={PortfolioDetailAll}/>
     {/*<Route path="/project" component={PortfolioDetailAll}/>*/}
     <Route path="/print" component={PortfolioMaster}/>

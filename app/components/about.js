@@ -2,16 +2,47 @@
  * Created by ulrichsinn on 04/19/2017.
  */
 
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-const About = ( { onPageClick, pageContent, baseUrl }) =>
-  (<div id="oped" className="contentPanel">
-    <div className="flexInner">
-      <p >{pageContent[0].bodyStripped}</p>
-      <p><em>{pageContent[0].author}</em></p>
+const AboutItem = ({question, answer}) => {
+  console.log('AboutItem', question, answer);
+
+  return (
+    <div>
+      <div className='question'>{question}</div>
+      <div className='answer' dangerouslySetInnerHTML={createMarkup(answer)}></div>
     </div>
-  </div>);
+  );
+};
+
+function createMarkup(answer) {
+  return {__html: answer};
+}
+
+export default class About extends Component {
+  render() {
+    const {onPageClick, pageContent, baseUrl} = this.props;
+    const aboutItems = this.getAboutItems(pageContent[0]);
+    return (<div id="oped" className="contentPanel">
+      <div className="flexInner">
+        {aboutItems}
+      </div>
+    </div>);
+  }
+
+  getAboutItems(pageContent) {
+    return pageContent.map((item, index) => {
+      console.log('item', index);
+      return (<AboutItem
+        key={index}
+        question={item.question}
+        answer={item.answer}
+      />);
+    });
+  }
+
+}
 
 
 About.propTypes = {
@@ -20,4 +51,9 @@ About.propTypes = {
   onPageClick: PropTypes.func,
 };
 
-export default About;
+AboutItem.propTypes = {
+  question: PropTypes.string,
+  answer: PropTypes.string,
+};
+
+// export default About;

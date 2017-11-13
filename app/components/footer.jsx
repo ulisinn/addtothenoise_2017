@@ -20,7 +20,7 @@ export default class Footer extends Component {
     return (
       <div id="footer">
         <a href={'https://www.instagram.com/laikasinn/'} target={'_blank'} style={{marginRight: '0.6em'}}>
-          <Icon name="instagram" className={'footerIcon'} style={{fontSize: '1.3em'}}/>
+          <Icon name="instagram" className={'footerIcon'} style={{fontSize: '1.5em'}}/>
         </a>
         <a href={'https://www.linkedin.com/in/anabelsinn/'} target={'_blank'}
            style={{marginLeft: '0.6em', marginRight: '0.6em'}}>
@@ -28,7 +28,7 @@ export default class Footer extends Component {
           <Icon name="caret-right"
                 className={'footerIcon'}
                 style={{marginLeft: '0.3em', marginRight: '0.3em'}}/>
-          <Icon name="linkedin" style={{fontSize: '1.1em'}}/>
+          <Icon name="linkedin" className={'footerIcon'} />
         </a>
         <a href={'https://www.linkedin.com/in/ulrich-sinn/'} target={'_blank'}
            style={{marginLeft: '0.6em', marginRight: '0.6em'}}>
@@ -56,7 +56,7 @@ export default class Footer extends Component {
     console.log('metaData width', this.props.metaData.width);
 
     return (this.props.metaData.width > 650) ?
-      <span> Also, Uli has an <Link to='/opinion' className={'footerIcon'}>OPINION</Link> (it was gracefully pointed out that it is not <em>his</em>).</span> : null;
+      <span> Also, Uli has an <Link to='/opinion' className={'footerIcon'} style={{fontSize: '1.1em'}}>OPINION</Link> (it was gracefully pointed out that it is not <em>his</em>).</span> : null;
   }
 }
 

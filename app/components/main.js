@@ -61,6 +61,7 @@ class Main extends Component {
 
   getPageContent() {
     const pathName: string = this.props.location.pathname;
+    const data = this.props.state.loadRemoteContent.data;
     let content: Array<any> = [];
 
     switch (pathName) {
@@ -71,22 +72,22 @@ class Main extends Component {
         content = this.getAllPortfolioContent();
         return content;
       case '/web':
-        content = this.getFilteredPortfolioContent(this.props.state.loadRemoteContent.data.web);
+        content = this.getFilteredPortfolioContent(data.web);
         return content;
       case '/print':
-        content = this.getFilteredPortfolioContent(this.props.state.loadRemoteContent.data.print);
+        content = this.getFilteredPortfolioContent(data.print);
         return content;
       case '/other':
-        content = this.getFilteredPortfolioContent(this.props.state.loadRemoteContent.data.other);
+        content = this.getFilteredPortfolioContent(data.other);
         return content;
       case '/music':
-        content = this.getFilteredPortfolioContent(this.props.state.loadRemoteContent.data.music);
+        content = this.getFilteredPortfolioContent(data.music);
         return content;
       case '/about':
-        content = this.getOpedContent(this.props.state.loadRemoteContent.data.about[0]);
+        content = this.getOpedContent(data.mission_statement);
         return content;
       case '/opinion':
-        content = this.getOpedContent(this.props.state.loadRemoteContent.data.oped[0]);
+        content = this.getOpedContent(data.oped[0]);
         return content;
     }
     return content;

@@ -157,10 +157,17 @@ function formatData(items) {
     web: [],
     other: [],
     music: [],
+    mission_statement: [],
   };
 
+  console.log('formatData', items.mission_statement);
   // build header
-
+  data.mission_statement = items.mission_statement.map((item) => {
+    return {
+      question: item.question,
+      answer: item.answer,
+    };
+  });
   data.header[0].pages = items.navigation.map((d, i) => {
     return _.pick(d, 'label', 'path');
   });
