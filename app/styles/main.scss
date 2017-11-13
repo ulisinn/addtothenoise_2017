@@ -18,7 +18,6 @@ $VegurBold: 'vegurbold', Helvetica, Arial, sans-serif;
   min-width: 0;
 }
 
-
 .hidden {
   display: none;
 }
@@ -63,7 +62,7 @@ em {
   padding-top: 4em;
 
   //border: 1px solid grey;
-   background-color: white;
+  background-color: white;
   align-self: center;
   text-align: center;
   width: 85%;
@@ -245,9 +244,14 @@ em {
 
   a {
     font-family: 'vegurbold';
-    color: #d67029;
+    color: $footer_background;
     text-decoration: none;
     text-transform: uppercase;
+  }
+
+  .footerIcon {
+    color: $body_orange;
+    font-size: 1.1em;
   }
 }
 
@@ -260,7 +264,7 @@ em {
     width: 100%;
   }
 
-  .splashImageWrapper{
+  .splashImageWrapper {
     //border: 1px solid red;
   }
   .splashDescription {
@@ -334,11 +338,10 @@ OPED
 
 #portfolioDetail {
 
-
   @include mq('tablet') {
-/*    width: 80%;
-    height: 90%;
-    margin-left: 5%;*/
+    /*    width: 80%;
+        height: 90%;
+        margin-left: 5%;*/
     //margin-top: 5%;
   }
 
@@ -393,7 +396,7 @@ OPED
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
-/*    padding-bottom: 0.5em;*/
+    /*    padding-bottom: 0.5em;*/
 
     @include mq('tablet') {
       position: absolute;
@@ -407,10 +410,10 @@ OPED
   }
 
   .detailSelectorButtonContainer {
-/*    position: absolute;
-    top: 0;
-    right: -33px;
-    margin-top: -33px;*/
+    /*    position: absolute;
+        top: 0;
+        right: -33px;
+        margin-top: -33px;*/
     padding-left: 0.5em;
   }
 
@@ -463,13 +466,12 @@ OPED
     max-width: 180px;
     position: absolute;
     bottom: 21px;
-    left:2px;
+    left: 2px;
 
     svg {
       //border: 1px solid red;
     }
   }
 }
-
 
 @import 'phone';
