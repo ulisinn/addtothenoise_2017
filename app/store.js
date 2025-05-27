@@ -32,6 +32,7 @@ const dev = true;
 export const baseUrl = (dev)?'http://localhost:8080':'http://addtothenoise.com';
 const remote_url = baseUrl + '/api/all.php';
 const mock_url = baseUrl + '/mock/mock.json';
+// const mock_url = baseUrl + '/mock/portfolio_cleaned.json';
 // Always use mock data instead of remote data
 const url = mock_url;
 
