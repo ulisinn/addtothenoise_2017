@@ -28,11 +28,12 @@ export const SHOW_PORTFOLIO_MASTER = 'SHOW_PORTFOLIO_MASTER';
 export const SHOW_PORTFOLIO_DETAIL = 'SHOW_PORTFOLIO_DETAIL';
 
 
-const dev = false;
+const dev = true;
 export const baseUrl = (dev)?'http://localhost:8080':'http://addtothenoise.com';
 const remote_url = baseUrl + '/api/all.php';
 const mock_url = baseUrl + '/mock/mock.json';
-const url = (dev) ? mock_url : remote_url;
+// Always use mock data instead of remote data
+const url = mock_url;
 
 const logger = createLogger();
 const enhancer = compose(

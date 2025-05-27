@@ -1,7 +1,7 @@
 /**
  * Created by ulrichsinn on 04/19/2017.
  */
-import '../styles/main.scss';
+import '../styles/main.css';
 
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
@@ -29,7 +29,7 @@ class PortfolioDetailAll extends Component {
       project: {},
     };
   }
-  
+
   componentWillMount() {
     // console.log(this.props.location.query,'component will mount', this.props);
     if (!this.props.location.query.id) {
@@ -39,7 +39,7 @@ class PortfolioDetailAll extends Component {
       browserHistory.push('/');
     }
   }
-  
+
   componentDidMount() {
     this.setState({ project: this.props.pageContent });
     // console.log('componentDidMount', this.props);
@@ -49,22 +49,22 @@ class PortfolioDetailAll extends Component {
       image = detailPages.map(function ( item, index ) {
         return baseUrl + item.detailImage._default;
       });
-      
+
     }
-    
+
     image.splice(0, 0, baseUrl + this.props.pageContent.mainImage);
-    
+
     this.setState({
       image: image,
       showMoreButton: true,
       mpeg: (this.props.pageContent.mpeg) ? baseUrl + this.props.pageContent.mpeg : '',
     });
   }
-  
+
   componentWillReceiveProps() {
     //
   }
-  
+
   render() {
     const index = this.state.currentIndex;
     const currentImage = this.state.image[index];
@@ -88,13 +88,13 @@ class PortfolioDetailAll extends Component {
       return this.getDesktopContent(index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg);
     }
   }
-  
+
   getDesktopContent( index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg ) {
     console.log('getDesktopContent', arguments);
     return (
       <div id="portfolioDetail" className="contentPanel">
         <div className="flexInner">
-          
+
           {(index === 0) ? this.getMainImage(index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg) :
             <DetailImage currentDescription={currentDescription}
                          backgroundColor={this.state.project.backgroundColor}
@@ -107,7 +107,7 @@ class PortfolioDetailAll extends Component {
         </div>
       </div>);
   }
-  
+
   getPhoneContent( images, currentDescription, bgColor, controlsColor, isAudio, mpeg ) {
     console.log('getPhoneContent', images.length, currentDescription, bgColor, controlsColor, isAudio, mpeg);
     const detailImagePhone = images.map(function ( item, index ) {
@@ -128,7 +128,7 @@ class PortfolioDetailAll extends Component {
           <img src={item} alt=""/>
         </div>;
     });
-    
+
     return (
       <div id="portfolioDetailPhone" className="contentPanel">
         <div className="flexInnerPhone">
@@ -137,7 +137,7 @@ class PortfolioDetailAll extends Component {
         </div>
       </div>);
   }
-  
+
   getMainImage( index, currentDescription, currentImage, bgColor, controlsColor, isAudio, mpeg ) {
     console.log('getMainImage', arguments, this.state.image);
     return (isAudio) ?
@@ -153,11 +153,11 @@ class PortfolioDetailAll extends Component {
                  image={currentImage}
                  currentIndex={index}/>;
   }
-  
+
   onMoreClick() {
     this.setState({ currentIndex: 1 });
   }
-  
+
   onSetCurrentIndex( index ) {
     this.setState({ currentIndex: index });
   }
@@ -166,7 +166,7 @@ class PortfolioDetailAll extends Component {
 function getPageContent( state, id ) {
   const topLevelContent = state;
   let all = [];
-  
+
   for (let prop in topLevelContent) {
     let obj = topLevelContent[prop];
     if (parseInt(obj._id) == id) {
@@ -189,7 +189,7 @@ function getPageContent( state, id ) {
 const mapStateToProps = ( state ) => {
   const queryString = require('query-string');
   const parsed = queryString.parse(location.search);
-  
+
   console.log(' ================ mapStateToProps', parsed.id, state.metaDataReducer.data.isPhone);
   return {
     pageContent: getPageContent(state.portfolioReducer,  parsed.id),

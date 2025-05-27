@@ -104,7 +104,8 @@ export function getRemoteData(url: string) {
         return response.data;
       })
       .then((items) => {
-        const data = (url.indexOf('localhost') !== -1) ? items : formatData(items.sets);
+        // Check if using mock data (contains 'mock.json' in URL) or remote data
+        const data = (url.indexOf('mock.json') !== -1) ? items : formatData(items.sets);
         const portfolio = createAllList(data);
         const nav = createNavigation(data);
         dispatch(initNavigation(nav));

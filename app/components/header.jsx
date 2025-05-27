@@ -2,7 +2,7 @@
  * Created by ulrichsinn on 03/06/2017.
  */
 
-import "../styles/main.scss";
+import "../styles/main.css";
 
 import React, {Component} from "react";
 import {Link} from "react-router";

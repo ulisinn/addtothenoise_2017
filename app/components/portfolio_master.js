@@ -1,4 +1,4 @@
-import '../styles/main.scss';
+import '../styles/main.css';
 
 import React, { Component } from 'react';
 import * as _ from 'lodash';
@@ -13,7 +13,7 @@ export default class PortfolioMaster extends Component {
     super(props);
     this.onPageMouseEnter = this.onPageMouseEnter.bind(this);
     this.onPageMouseLeave = this.onPageMouseLeave.bind(this);
-    
+
     this.state = {
       currentDescription: 'current description',
       thumbnail:null,
@@ -27,7 +27,7 @@ export default class PortfolioMaster extends Component {
     this.setState({thumbnail:thumb,
       thumbnailPhone:thumbPhone,
       currentDescription: ' '});
-  
+
   }
   componentWillReceiveProps( newProps ) {
     console.log('componentWillReceiveProps', newProps);
@@ -38,10 +38,10 @@ export default class PortfolioMaster extends Component {
       thumbnailPhone:thumbPhone,
       currentDescription: ' '});
   }
-  
+
   render() {
     const isPhone = this.props.isPhone;
-    
+
     if (isPhone) {
       return (
         <div id="portfolio_phone" className="contentPanel">
@@ -62,11 +62,11 @@ export default class PortfolioMaster extends Component {
       );
     }
   }
-  
+
   getThumbnail(){
     return this.state.thumbnail;
   }
-  
+
   setThumbnail(props){
     const maxItems = 24,
       maxMusic = 8,
@@ -84,12 +84,12 @@ export default class PortfolioMaster extends Component {
     }
     let pageContent =  this.buildList(content);
     console.log('getThumbnail', path, pageContent);
-    
+
     const baseUrl =props.baseUrl;
     const onPageClick = props.onPageClick;
     const onPageMouseEnter = this.onPageMouseEnter;
     const onPageMouseLeave = this.onPageMouseLeave;
-    
+
     const thumbnail = range.map(function ( d, index ) {
       if(pageContent[index] && pageContent[index]._id){
         // console.log(index, pageContent[index]);
@@ -103,11 +103,11 @@ export default class PortfolioMaster extends Component {
       }
       return <BlankThumbnail key={index}/>;
     });
-  
+
     return thumbnail;
   }
-  
-  
+
+
   setPhoneThumbnail(props) {
     const baseUrl = props.baseUrl;
     const onPageClick = props.onPageClick;
@@ -125,33 +125,33 @@ export default class PortfolioMaster extends Component {
         return null;
       }
     });
-    
+
     return thumbnail;
   }
   getPhoneThumbnail(){
     return this.state.thumbnailPhone;
   }
-  
+
   buildList(all){
     console.log('getResult', all.length);
     const maxItems = 24;
     const input = all.map((d,i) => {
       return d;
     });
-    
+
     let result = [],
       range = Array.from(Array(maxItems).keys()),
       indices = [];
-    
+
     for (let i = 0; i < maxItems; i++) {
       result.push({});
     }
-    
+
     while (range.length > 0) {
       let randomInt = Math.floor(Math.random() * range.length);
       indices.push(range.splice(randomInt, 1)[0]);
     }
-    
+
     while (input.length > 0 && indices.length > 0) {
       let item = input.splice(0, 1)[0];
       let index = indices.splice(0, 1)[0];
@@ -160,7 +160,7 @@ export default class PortfolioMaster extends Component {
     console.log('getFilteredPortfolioContent', result.length);
     return result;
   }
-  
+
   onPageMouseEnter( id ) {
     const all = this.props.pageContent;
     const result = {};
@@ -173,9 +173,9 @@ export default class PortfolioMaster extends Component {
       }
     }
     this.setState({ currentDescription: result });
-    
+
   }
-  
+
   onPageMouseLeave( id ) {
     // console.log('onPageMouseLeave id', this);
     this.setState({ currentDescription: '. ' });
