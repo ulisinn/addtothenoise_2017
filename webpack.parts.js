@@ -36,7 +36,7 @@ exports.lintJavaScript = function ({ include, exclude, options }) {
           include,
           exclude,
           enforce: 'pre',
-          
+
           loader: 'eslint-loader',
           options,
         },
@@ -50,11 +50,11 @@ exports.loadCSS = function ({ include, exclude } = {}) {
     module: {
       rules: [
         {
-          test: /\.(css|scss)$/,
+          test: /\.css$/,
           include,
           exclude,
-          
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+
+          use: ['style-loader', 'css-loader'],
         },
       ],
     },
@@ -66,15 +66,15 @@ exports.extractCSS = function ({ include, exclude, use }) {
   const plugin = new ExtractTextPlugin({
     filename: '[name].[contenthash:8].css',
   });
-  
+
   return {
     module: {
       rules: [
         {
-          test: /\.(css|scss)$/,
+          test: /\.css$/,
           include,
           exclude,
-          
+
           use: plugin.extract({
             use,
             fallback: 'style-loader',
@@ -114,7 +114,7 @@ exports.lintCSS = function ({ include, exclude }) {
           include,
           exclude,
           enforce: 'pre',
-          
+
           loader: 'postcss-loader',
           options: {
             plugins: () => ([
@@ -138,7 +138,7 @@ exports.loadImages = function ({ include, exclude, options } = {}) {
           test: /\.(png|jpg|svg|gif)$/,
           include,
           exclude,
-          
+
           use: {
             loader: 'url-loader',
             options,
@@ -158,7 +158,7 @@ exports.loadFonts = function ({ include, exclude, options } = {}) {
           test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           include,
           exclude,
-          
+
           use: {
             // loader: 'file-loader',
             loader: 'url-loader?limit=20&name=assets/[name].[hash].[ext]',
@@ -192,7 +192,7 @@ exports.loadJavaScript = function ({ include, exclude }) {
           test: /\.(js|jsx)$/,
           include,
           exclude,
-          
+
           loader: 'babel-loader',
           options: {
             // Enable caching for improved performance during
@@ -252,7 +252,7 @@ exports.minifyCSS = function ({ options }) {
 exports.setFreeVariable = function (key, value) {
   const env = {};
   env[key] = JSON.stringify(value);
-  
+
   return {
     plugins: [
       new webpack.DefinePlugin(env),

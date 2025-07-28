@@ -1,0 +1,26 @@
+/* Media query breakpoints */
+:root {
+  --breakpoint-phone: 400px;
+  --breakpoint-phone-wide: 480px;
+  --breakpoint-phablet: 560px;
+  --breakpoint-tablet-small: 640px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-tablet-wide: 1024px;
+  --breakpoint-desktop: 1248px;
+  --breakpoint-desktop-wide: 1440px;
+}
+
+/*
+  Note: The SCSS mixin @mixin mq($width, $type: min) has been removed.
+  Media queries are now applied directly in the CSS where needed.
+
+  Example usage in original SCSS:
+  @include mq('tablet') {
+    // styles for tablet and up
+  }
+
+  Equivalent in CSS:
+  @media only screen and (min-width: 768px) {
+    // styles for tablet and up
+  }
+*/

@@ -1,0 +1,515 @@
+/* Import other CSS files */
+@import 'reset.css';
+@import 'colors.css';
+@import 'fonts.css';
+@import 'media_queries.css';
+@import 'slick.css';
+@import 'slick-theme.css';
+@import 'phone.css';
+
+/* Font families */
+:root {
+  --VegurRegular: 'vegurregular', Helvetica, Arial, sans-serif;
+  --VegurLight: 'vegurlight', Helvetica, Arial, sans-serif;
+  --VegurBold: 'vegurbold', Helvetica, Arial, sans-serif;
+}
+
+* {
+  min-height: 0;
+  min-width: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  background-color: white;
+  color: var(--header-background);
+  font-family: var(--VegurRegular);
+  font-size: 100%;
+}
+
+#topNode {
+  /* border: 1px solid red; */
+}
+
+em {
+  font-family: var(--VegurBold);
+}
+
+.contentPanel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media only screen and (min-width: 768px) {
+  .contentPanel {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .contentPanel {
+    justify-content: center;
+    /* height: 90%; */
+  }
+}
+
+.flexInner {
+  padding-top: 4em;
+  /* border: 1px solid grey; */
+  background-color: white;
+  align-self: center;
+  text-align: center;
+  width: 85%;
+  max-width: 1025px;
+}
+
+@media only screen and (min-width: 768px) {
+  .flexInner {
+    padding-top: 0;
+  }
+}
+
+.thumbnail, .blankThumbnail {
+  box-sizing: border-box;
+  border-bottom: 1px #c2c2d0 solid;
+  border-right: 1px #c2c2d0 solid;
+  position: relative;
+  width: 127px;
+  height: 90px;
+  overflow: hidden;
+  background-color: #e7e7df;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+.blankThumbnail {
+  background-color: #F9F9F1;
+}
+
+.thumbnail:hover {
+  cursor: pointer;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.projectDescription {
+  position: relative;
+  height: 20px;
+  margin-top: 3px;
+  font-size: 0.8em;
+  line-height: 1.2em;
+}
+
+/* HEADER*/
+#header {
+  background-color: var(--header-background);
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  width: 100%;
+  height: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  #header {
+    height: 40px;
+  }
+}
+
+#header h1 {
+  color: white;
+  position: relative;
+  margin-top: 6px;
+  margin-bottom: 9px;
+  margin-left: 0.8em;
+  letter-spacing: 1px;
+  font-size: 1.3em;
+  user-select: none;
+  cursor: default;
+}
+
+#header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 768px) {
+  #header h1 {
+    font-size: 1.6em;
+    margin-top: 21px;
+    margin-bottom: 0;
+  }
+}
+
+#header #portfolioNav {
+  color: var(--header-background);
+  margin-left: 10px;
+  margin-top: -5px;
+  font-size: 0.8em;
+  background-color: white;
+}
+
+#header #portfolioNav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#header #portfolioNav ul,
+#header #portfolioNav li {
+  list-style: none;
+}
+
+#header #portfolioNav li {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  /* margin-left: 5px;
+  margin-right: 5px; */
+  padding-top: 6px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  overflow: hidden;
+  letter-spacing: inherit;
+}
+
+#header #portfolioNav li.deselected {
+  font-family: var(--VegurRegular);
+  border-left: 1px rgba(255, 255, 255, 0) solid;
+  border-right: 1px rgba(255, 255, 255, 0) solid;
+  border-bottom: 1px rgba(255, 255, 255, 0) solid;
+}
+
+#header #portfolioNav li.selected {
+  border-left: 1px var(--header-background) solid;
+  border-right: 1px var(--header-background) solid;
+  border-bottom: 1px var(--header-background) solid;
+  font-family: var(--VegurBold);
+  /* padding-bottom: 4px;
+  padding-left: 11px;
+  padding-right: 11px; */
+  user-select: none;
+  cursor: default;
+}
+
+#header #portfolioNav li.splashNav {
+  border-left: 1px var(--header-background) solid;
+  border-right: 1px var(--header-background) solid;
+  border-bottom: 1px var(--header-background) solid;
+  position: absolute;
+  right: 2em;
+}
+
+@media only screen and (min-width: 768px) {
+  #header #portfolioNav {
+    margin-left: 200px;
+    margin-top: -7px;
+    font-size: 0.9em;
+    background-color: transparent;
+  }
+
+  #header #portfolioNav li {
+    padding-left: 11px;
+    padding-right: 11px;
+    letter-spacing: 0.07em;
+  }
+
+  #header #portfolioNav li.splashNav {
+    margin-left: 0;
+    position: relative;
+    margin-left: 30px;
+  }
+}
+
+/* FOOTER*/
+#footer {
+  position: fixed;
+  bottom: 0px;
+  z-index: 101;
+  width: 100%;
+  /* border: 1px solid grey; */
+  margin-bottom: 0;
+  margin-top: 2px;
+  padding-left: 2.4em;
+  background-color: white;
+  border-top: 1px var(--header-background) solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 0.8em;
+  color: var(--header-background);
+}
+
+#footer a {
+  font-family: 'vegurbold';
+  color: var(--footer-background);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#footer .footerIcon {
+  color: var(--icon-color);
+  font-size: 1.3em;
+}
+
+/* SPLASH SCREEN*/
+#splash {
+  justify-content: center;
+  align-items: center;
+}
+
+#splash img {
+  width: 100%;
+}
+
+#splash .splashImageWrapper {
+  /* border: 1px solid red; */
+}
+
+#splash .splashDescription {
+  text-align: left;
+  font-size: 0.8em;
+  margin-bottom: 1em;
+  border-left: 3px var(--header-background) solid;
+  padding-left: 0.5em;
+}
+
+@media only screen and (min-width: 768px) {
+  #splash .splashDescription {
+    font-size: 0.95em;
+    margin-left: 0;
+  }
+}
+
+/* OPED */
+#oped {
+  line-height: 1.3em;
+  text-align: left;
+  justify-content: center;
+}
+
+#oped p {
+  font-size: 0.8em;
+  margin-bottom: 2em;
+  color: var(--header-background);
+}
+
+#oped .flexInner {
+  /* border: 1px solid red; */
+  align-self: center;
+  text-align: left;
+  padding: 1em;
+  max-width: 750px;
+}
+
+#oped .question {
+  color: var(--icon-color);
+  margin-bottom: 0.5em;
+}
+
+#oped .answer {
+  margin-bottom: 1em;
+}
+
+#oped .answer p {
+  margin: 0;
+  margin-bottom: 0.4em;
+}
+
+/* PORTFOLIO*/
+#portfolio .flexInner {
+  width: 381px;
+  border: none;
+  text-align: left;
+}
+
+@media only screen and (min-width: 768px) {
+  #portfolio .flexInner {
+    width: 762px;
+  }
+}
+
+#portfolio #flexThumbnail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-left: 1px #c2c2d0 solid;
+  border-top: 1px #c2c2d0 solid;
+  border-bottom: none;
+  border-right: none;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  max-width: 780px;
+  box-sizing: content-box;
+}
+
+/* PORTFOLIO DETAIL */
+#portfolioDetail {
+  /* Default styles */
+}
+
+@media only screen and (min-width: 768px) {
+  #portfolioDetail {
+    /* width: 80%;
+    height: 90%;
+    margin-left: 5%; */
+    /* margin-top: 5%; */
+  }
+}
+
+@media only screen and (min-width: 1248px) {
+  #portfolioDetail {
+    width: 90%;
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+#portfolioDetail .flexInner {
+  position: relative;
+  border: none;
+  background-color: white;
+  align-self: center;
+  width: auto;
+  display: flex;
+}
+
+#portfolioDetail .detailImageContainer {
+  text-align: left;
+}
+
+#portfolioDetail .mainImage {
+  text-align: right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 364px;
+  width: 364px;
+}
+
+#portfolioDetail .mainImage img {
+  /* width: 100%; */
+  height: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  #portfolioDetail .mainImage {
+    height: 364px;
+    width: 768px;
+  }
+}
+
+@media only screen and (min-width: 1248px) {
+  #portfolioDetail .mainImage {
+    height: 364px;
+    width: auto;
+    min-width: 768px;
+  }
+}
+
+#portfolioDetail .moreButton {
+  position: relative;
+  width: 99px;
+  height: 24px;
+  background-image: url('../images/moreBtn.png');
+  margin-left: -5px;
+  margin-top: -18px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  /* padding-bottom: 0.5em; */
+}
+
+@media only screen and (min-width: 768px) {
+  #portfolioDetail .moreButton {
+    position: absolute;
+    right: 0;
+    bottom: 17px;
+    margin-right: -90px;
+    margin-left: 0;
+    margin-top: 0;
+    width: 80px;
+  }
+}
+
+#portfolioDetail .detailSelectorButtonContainer {
+  /* position: absolute;
+  top: 0;
+  right: -33px;
+  margin-top: -33px; */
+  padding-left: 0.5em;
+}
+
+#portfolioDetail .closeDetailButton {
+  background-image: url('../images/closeBtn.png');
+  position: relative;
+  width: 23px;
+  height: 23px;
+  border: 1px solid var(--header-background);
+  background-size: cover;
+  box-sizing: content-box;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+#portfolioDetail .selectDetailButton {
+  position: relative;
+  width: 20px;
+  height: 19px;
+  border: 1px solid var(--header-background);
+  font-size: 0.8em;
+  padding-top: 5px;
+  margin-bottom: 8px;
+  line-height: 1.2em;
+  padding-left: 1px;
+  padding-right: 2px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+#portfolioDetail .selectDetailButtonSelected {
+  position: relative;
+  width: 20px;
+  height: 19px;
+  border: 1px solid var(--header-background);
+  background-color: var(--header-background);
+  font-size: 0.8em;
+  padding-top: 5px;
+  margin-bottom: 8px;
+  line-height: 1.2em;
+  padding-left: 1px;
+  padding-right: 2px;
+  box-sizing: content-box;
+  color: white;
+  cursor: default;
+}
+
+#portfolioDetail #audioPlayerControls {
+  width: 50%;
+  max-width: 180px;
+  position: absolute;
+  bottom: 21px;
+  left: 2px;
+}
+
+#portfolioDetail #audioPlayerControls svg {
+  /* border: 1px solid red; */
+}
+

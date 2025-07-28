@@ -1,7 +1,7 @@
 /**
  * Created by ulrichsinn on 04/21/2017.
  */
-import '../styles/main.scss';
+import '../styles/main.css';
 
 import React, { Component } from 'react';
 import { Link } from 'react-router';
@@ -13,7 +13,7 @@ export default class Navigation extends Component {
   constructor( props ) {
     super(props);
   }
-  
+
   render() {
     return <div id="portfolioNav">
       <ul>
@@ -21,7 +21,7 @@ export default class Navigation extends Component {
       </ul>
     </div>;
   }
-  
+
   createTopNavigation( arr, path ) {
     const siteData = this.props.siteData;
     const nav = arr.map(function ( item, index ) {
@@ -33,21 +33,21 @@ export default class Navigation extends Component {
       } else {
         listItem = <li className="deselected" key={index}><Link to={item.path}>{item.label}</Link></li>;
       }
-      
+
       if (item.path === '/contact' || item.path === '/oped') {
         listItem = null;
       }
-      
+
       if (navItemName === 'music' && showItem === false) {
         listItem = null;
       }
       if (navItemName === 'other' && showItem === false) {
         listItem = null;
       }
-      
+
       return listItem;
     });
-    
+
     return nav;
   }
 }

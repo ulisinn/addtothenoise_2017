@@ -72,7 +72,7 @@ const productionConfig = merge([
   ]),
   parts.generateSourceMaps({ type: 'source-map' }),
   parts.extractCSS({
-    use: ['css-loader', 'sass-loader', parts.autoprefix()],
+    use: ['css-loader', parts.autoprefix()],
   }),
   parts.purifyCSS({
     paths: glob.sync(
@@ -127,6 +127,6 @@ module.exports = function (env) {
   const config = env === 'production' ?
     productionConfig :
     developmentConfig;
-  
+
   return merge([commonConfig, config].concat(pages));
 };
