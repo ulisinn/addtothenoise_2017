@@ -1,0 +1,30 @@
+/* Font faces */
+@font-face {
+  font-family: 'vegurbold';
+  src: url('../fonts/vegur-bold-webfont.eot');
+  src: url('../fonts/vegur-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/vegur-bold-webfont.woff') format('woff'),
+       url('../fonts/vegur-bold-webfont.svg#vegurbold') format('svg');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'vegurlight';
+  src: url('../fonts/vegur-light-webfont.eot');
+  src: url('../fonts/vegur-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/vegur-light-webfont.woff') format('woff'),
+       url('../fonts/vegur-light-webfont.svg#vegurlight') format('svg');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'vegurregular';
+  src: url('../fonts/vegur-regular-webfont.eot');
+  src: url('../fonts/vegur-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/vegur-regular-webfont.woff') format('woff'),
+       url('../fonts/vegur-regular-webfont.svg#vegurregular') format('svg');
+  font-style: normal;
+  font-weight: normal;
+}

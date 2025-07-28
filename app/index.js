@@ -1,4 +1,4 @@
-import './styles/main.scss';
+import './styles/main.css';
 
 import 'react';
 import React from 'react';
@@ -65,4 +65,3 @@ function _initialLoad() {
     );
   }
 }
-

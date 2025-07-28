@@ -2,7 +2,7 @@
  * Created by ulrichsinn on 04/27/2017.
  */
 
-import '../styles/main.scss';
+import '../styles/main.css';
 
 import React from 'react';
 import PropTypes from 'prop-types';
